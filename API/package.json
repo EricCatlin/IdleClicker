@@ -1,0 +1,30 @@
+{
+  "name": "anne.api",
+  "version": "1.0.0",
+  "description": "A NodeJS->Express + Neo4j API ",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "dist/test.js"
+  },
+   "author": "Eric Catlin <eroccatlun@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "compression": "^1.5.2",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "lodash": "^4.17.4",
+    "morgan": "^1.8.0",
+    "neo4j": "^2.0.0-RC2",
+    "resource-router-middleware": "^0.6.0",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "eslint": "^3.1.1",
+    "nodemon": "^1.9.2"
+  }
+}
