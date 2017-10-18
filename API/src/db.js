@@ -1,6 +1,6 @@
 var neo4j = require('neo4j');
 
-var GRAPH_URL = 'graph_url'
+var GRAPH_URL = 'http://api:b.5cjVfnAolUkc.L7xAbITrjoCQA6nT@hobby-aagmlhhaanncgbkebkidmepl.dbs.graphenedb.com:24789/db/data/'
 //tester b.yhKjYZCt6tML.nMX06nm3tmnWOJxm
 //api password
 export default callback => {
