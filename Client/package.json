@@ -1,7 +1,7 @@
 {
-  "name": "aws-cognito-angular2-quickstart",
-  "author": "Vladimir Budilov",
-  "version": "1.0.0",
+  "name": "IdleClicker",
+  "author": "Eric Catlin",
+  "version": "0.0.1",
   "angular-cli": {},
   "scripts": {
     "start": "ng serve --port 3333",

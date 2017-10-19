@@ -28,7 +28,7 @@ export class SavedGamesComponent implements LoggedInCallback {
             this.router.navigate(['/home/login']);
         } else {
             console.log("scanning DDB");
-            this.ddb.getSavedGames(this.logdata);
+            this.ddb.getSavedGames();
         }
     }
 
