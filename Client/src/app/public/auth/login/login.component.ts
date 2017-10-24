@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {UserLoginService} from "../../../service/user-login.service";
 import {CognitoCallback, LoggedInCallback} from "../../../service/cognito.service";
-import {DynamoDBService} from "../../../service/ddb.service";
+import {GraphDBService} from "../../../service/graphdb.service";
 
 @Component({
     selector: 'awscognito-angular2-app',
@@ -14,7 +14,7 @@ export class LoginComponent implements CognitoCallback, LoggedInCallback, OnInit
     errorMessage: string;
 
     constructor(public router: Router,
-                public ddb: DynamoDBService,
+                public ddb: GraphDBService,
                 public userService: UserLoginService) {
         console.log("LoginComponent constructor");
     }
