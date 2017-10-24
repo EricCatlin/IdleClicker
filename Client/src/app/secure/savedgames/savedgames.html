@@ -6,9 +6,8 @@
             <th>Action</th>
             <th>Date</th>
         </tr>
-        <tr *ngFor="let item of logdata" class="active">
-            <td>{{ item.type }}</td>
-            <td>{{ item.date }}</td>
+        <tr *ngFor="let uuid of saved_games.node_label_index.SavedGame" class="active">
+            <td>{{ saved_games.nodes[uuid].properties.name }}</td>
         </tr>
     </table>
 </div>

@@ -26,6 +26,10 @@ export class MyProfileComponent implements LoggedInCallback {
             this.userParams.getParameters(new GetParametersCallback(this, this.cognitoUtil));
         }
     }
+    NewGame(){
+        console.log("new Game Clicked")
+        console.log("UserId: " + this.parameters[0].value);
+    } 
 }
 
 export class Parameters {
