@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('idle-clicker-client App', () => {
+describe('idle-client App', () => {
   let page: AppPage;
 
   beforeEach(() => {
