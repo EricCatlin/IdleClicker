@@ -8,6 +8,8 @@ import { ClockService} from  "./clock/clock.service";
 import { AppComponent }        from './app.component';
 
 import { GameComponent }  from './game/game.component';
+import { TimeComponent }  from './time/time.component';
+
 
 import { DashboardComponent }     from './dashboard/dashboard.component';
 import { AppRoutingModule }     from './app-routing.module';
@@ -22,7 +24,9 @@ import {ButtonModule} from 'primeng/primeng';
     AppComponent,
     
     DashboardComponent,
-    GameComponent
+    GameComponent,
+    TimeComponent
+    
   ],
   imports: [
     BrowserModule,

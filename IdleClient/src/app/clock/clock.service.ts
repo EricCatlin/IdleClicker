@@ -17,10 +17,10 @@ export class ClockService {
             ticker.tick();
         });
     }
-    StartTicker() {
+    StartTicker(delay:number) {
         console.log("Init ticker");
         if (!this.ticker) {
-            this.ticker = Observable.interval(this.clock_speed).subscribe(x => this.Tick());
+            this.ticker = Observable.interval(delay || this.clock_speed).subscribe(x => this.Tick());
         }
     }
 
