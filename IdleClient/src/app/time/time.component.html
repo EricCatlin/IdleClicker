@@ -1,16 +1,16 @@
-<div class="ui-g">
-    <div class="ui-g-4">
-        <button pButton type="button" (click)="StopClock()" label="Pause"></button>
-    </div>
-    <div class="ui-g-4">
-        <button pButton type="button" (click)="StartClock()" label="Play"></button>
-    </div>
 
-    <div class="ui-g-4">
-        <button pButton type="button" (click)="UltraSpeed()" label="Fast"></button>
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <button pButton type="button" label="Play" icon="fa-play"  (click)="StartClock()"></button>
+        <button pButton type="button" label="Pause" icon="fa-folder-open" (click)="StopClock()"></button>
+            
+        <i class="fa fa-bars"></i>
+        
     </div>
-
-    <div class="ui-g-4">
-        <button pButton type="button" (click)="NormalSpeed()" label="Normal"></button>
+    
+    <div class="ui-toolbar-group-right">
+        <i class="fa fa-bars"></i>
+        <button pButton type="button" label="1X" icon="fa-refresh" [ngClass]="{'ui-button-warning':tick_delay==1}" (click)="StartClock(1)"></button>
+        <button pButton type="button" label="10X" icon="fa-trash"  [ngClass]="{'ui-button-warning':tick_delay==10}" (click)="StartClock(10)"></button>
     </div>
-</div>
+</p-toolbar>

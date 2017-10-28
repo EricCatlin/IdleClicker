@@ -3,18 +3,15 @@ import { Router } from '@angular/router';
 
 import { ClockService } from '../clock/clock.service';
 
-
-
-
 @Component({
   selector: 'time-panel',
   templateUrl: `./time.component.html`
 })
+
 export class TimeComponent implements OnInit {
   tick_counter: number;
-
-
-
+  tick_delay:number;
+  
   tick() {
     this.tick_counter += 1;
    
@@ -22,7 +19,7 @@ export class TimeComponent implements OnInit {
   constructor(private clock: ClockService) {
 
     this.tick_counter = 0;
-
+    this.tick_delay = 1;
     
     this.clock = clock;
   }
@@ -30,27 +27,16 @@ export class TimeComponent implements OnInit {
     console.log("Hello ");
     this.clock.Tick_CheckIn(this);
     this.StartClock();
-
   }
 
 
-  StartClock() {
-    this.clock.StartTicker(1000);
+  StartClock(delay = null) {
+    this.tick_delay = delay || this.tick_delay;
+    this.StopClock();
+    this.clock.StartTicker(1000/this.tick_delay);
   }
   
   StopClock() {
     this.clock.StopTicker();
   }
-
-  UltraSpeed() {
-    this.StopClock();
-    this.clock.StartTicker(100);
-  }
-
-  NormalSpeed(){
-    this.StopClock();
-    this.clock.StartTicker(1000);
-  }
-
-
 }

@@ -1,0 +1,14 @@
+<div class="ui-g">
+    <div class="ui-g-4">
+        <button pButton type="button" [disabled]="auto_workers_cost > inventory.current" (click)="IncrementWorker(1)" label="Buy Worker ({{auto_workers_cost}})">
+            </button>
+    </div>
+    <div class="ui-g-4">{{worker_count}}</div>
+</div>
+<div class="ui-g">
+        <div class="ui-g-4">
+            <button pButton type="button" [disabled]="manager_cost > inventory.current" (click)="IncrementManager(1)" label="Buy Manager ({{manager_cost}})">
+                </button>
+        </div>
+        <div class="ui-g-4">{{manager_count}}</div>
+    </div>

@@ -1,23 +1,5 @@
 <h1>PaperClicker</h1>
 
 <time-panel></time-panel>
-<div class="ui-g">
-    <div class="ui-g-4">Total Made:</div>
-    <div class="ui-g-4">{{total}}</div>
-
-</div>
-<div class="ui-g">
-    <div class="ui-g-4">{{current}}</div>
-    <div class="ui-g-4">
-        <button pButton type="button" (click)="Increment(1)" label="Click"></button>
-    </div>
-
-</div>
-
-<div class="ui-g">
-    <div class="ui-g-4">{{auto_workers}}</div>
-    <div class="ui-g-4">
-        <button pButton type="button" [disabled]="current < auto_workers_cost" (click)="IncrementAutoWorker(1)" label="AutoWorker({{auto_workers_cost}})"></button>
-    </div>
-
-</div>
+<inventory-panel></inventory-panel>
+<worker-panel></worker-panel>
