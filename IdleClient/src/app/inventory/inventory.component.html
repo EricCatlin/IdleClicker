@@ -1,9 +1,6 @@
-<div class="ui-g">
-    <div class="ui-g-4">
-        <button pButton type="button" (click)="IncrementResource(1)" label="Click">
-            </button>
-    </div>
-    <div class="ui-g-4">{{inventory.current_resource}}</div>
-    <div class="ui-g-4">{{inventory.delta_resource}} per tick</div>
-    <chart-panel></chart-panel>
+<div class="ui-g-12">
+    <button pButton class="ui-g-6" type="button" (click)="IncrementResource(1)" label="Click">
+    </button>
+    <div class="ui-g-3">Resources: {{inventory.current_resource}}</div>
+    <div class="ui-g-3">{{inventory.delta_resource}} per tick</div>
 </div>

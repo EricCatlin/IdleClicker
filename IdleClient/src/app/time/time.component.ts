@@ -11,7 +11,7 @@ import { ClockService } from '../clock/clock.service';
 export class TimeComponent implements OnInit {
   tick_counter: number;
   tick_delay:number;
-  
+  clock_running:boolean;
   tick() {
     this.tick_counter += 1;
    
@@ -22,6 +22,7 @@ export class TimeComponent implements OnInit {
     this.tick_delay = 1;
     
     this.clock = clock;
+    this.clock_running = false;
   }
   ngOnInit(): void {
     console.log("Hello ");
@@ -34,9 +35,12 @@ export class TimeComponent implements OnInit {
     this.tick_delay = delay || this.tick_delay;
     this.StopClock();
     this.clock.StartTicker(1000/this.tick_delay);
+    this.clock_running=true;
   }
   
   StopClock() {
+
     this.clock.StopTicker();
+    this.clock_running=false;
   }
 }
