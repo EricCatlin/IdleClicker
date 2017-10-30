@@ -1,27 +1,29 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
+import { ClockService } from '../clock/clock.service'
 @Injectable()
 export class InventoryService {
 
-  Increment(amount: number) {
-    this.current += amount;
-    this.total += amount;
+  IncrementResource(amount: number) {
+    this.current_resource += amount;
+    this.total_resource += amount;
   }
 
-  IncrementWorker(amount: number) {
-    this.current += amount;
-    this.total += amount;
+  total_resource: number;
+  current_resource: number;
+  previous_resource: number;
+  delta_resource : number;
+  
+  tick(){
+    this.delta_resource = this.current_resource - this.previous_resource;
+    this.previous_resource   = this.current_resource;
   }
-
-  total: number;
-  current: number;
-  previous: number;
-
-  constructor() {
-    this.current = 10000;
-    this.total = this.current;
-    this.previous = 0;
-
+  constructor(private clock : ClockService) {
+    this.current_resource = 10000;
+    this.total_resource = this.current_resource;
+    this.previous_resource = 0;
+    this.delta_resource = 0;
+    clock.Tick_CheckIn(this);
   }
 }

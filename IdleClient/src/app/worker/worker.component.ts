@@ -9,7 +9,6 @@ import { InventoryService } from '../inventory/inventory.service';
   templateUrl: `./worker.component.html`
 })
 
-
 export class WorkerComponent implements OnInit {
   manager_count: number;
   manager_cost: number;
@@ -20,7 +19,7 @@ export class WorkerComponent implements OnInit {
 
   tick() {
     let auto = Math.floor((this.worker_count * this.auto_workers_power) + ((this.manager_count/10) * this.worker_count));
-    this.inventory.Increment(auto);
+    this.inventory.IncrementResource(auto);
   }
   constructor(private clock: ClockService, private inventory: InventoryService) {
     this.worker_count = 0;
@@ -30,8 +29,6 @@ export class WorkerComponent implements OnInit {
     this.manager_count=0;
     this.manager_cost=100;
 
-
-
     this.clock = clock;
     this.inventory = inventory;
   }
@@ -40,13 +37,13 @@ export class WorkerComponent implements OnInit {
     this.clock.Tick_CheckIn(this);
   }
   IncrementWorker() {
-     this.inventory.current -= this.auto_workers_cost;
+     this.inventory.current_resource -= this.auto_workers_cost;
      this.worker_count++;
      this.auto_workers_cost = Math.floor(this.auto_workers_cost * 1.1);
    }
    
    IncrementManager() {
-    this.inventory.current -= this.manager_cost;
+    this.inventory.current_resource -= this.manager_cost;
     this.manager_count++;
     this.manager_cost = Math.floor(this.manager_cost * 1.3);
   }

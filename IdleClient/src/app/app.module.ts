@@ -14,6 +14,7 @@ import { WorkerComponent }  from './worker/worker.component';
 
 import { TimeComponent }  from './time/time.component';
 import { InventoryComponent }  from './inventory/inventory.component';
+import { ChartComponent }  from './chart/chart.component';
 
 
 import { DashboardComponent }     from './dashboard/dashboard.component';
@@ -23,7 +24,7 @@ import { AppRoutingModule }     from './app-routing.module';
 //PrimeNG Stuff//
 import {ButtonModule} from 'primeng/primeng';
 import {ToolbarModule} from 'primeng/primeng';
-
+import {ChartModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,8 @@ import {ToolbarModule} from 'primeng/primeng';
     GameComponent,
     TimeComponent,
     InventoryComponent,
+    ChartComponent,
+    
     WorkerComponent
   ],
   imports: [
@@ -43,7 +46,8 @@ import {ToolbarModule} from 'primeng/primeng';
     HttpModule,
     
     ToolbarModule,
-    ButtonModule
+    ButtonModule,
+    ChartModule
   ],
   providers: [ClockService, InventoryService],
   bootstrap: [AppComponent]
