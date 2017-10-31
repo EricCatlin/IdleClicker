@@ -1,13 +1,15 @@
-<p-panel header="Worker" [toggleable]="true" class="ui-g-6">
-    <button pButton type="button" class="ui-g-12" [disabled]="auto_workers_cost > inventory.current_resource" (click)="IncrementWorker(1)"
-        label="Buy Worker ({{auto_workers_cost}})">
-    </button>
-    <div>Current: {{worker_count}}</div>
-</p-panel>
+<div>
+    <p-panel header="Worker" [toggleable]="true" class="ui-g-6">
+        <button pButton type="button"  [disabled]="auto_workers_cost > currency.current" (click)="IncrementWorker(1)"
+            label="Buy Worker ({{auto_workers_cost}})">
+        </button>
+        <div>Current: {{workers.current}}</div>
+    </p-panel>
 
-<p-panel header="Manager" [toggleable]="true" class="ui-g-6">
-    <button pButton type="button" class="ui-g-12" [disabled]="manager_cost > inventory.current_resource" (click)="IncrementManager(1)"
-        label="Buy Manager ({{manager_cost}})">
-    </button>
-    <div>Current: {{manager_count}}</div>
-</p-panel>
+    <p-panel header="Manager" [toggleable]="true" class="ui-g-6">
+        <button pButton type="button" [disabled]="manager_cost > currency.current" (click)="IncrementManager(1)"
+            label="Buy Manager ({{manager_cost}})">
+        </button>
+        <div>Current: {{managers.current}}</div>
+    </p-panel>
+</div>

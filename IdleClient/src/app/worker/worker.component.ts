@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ClockService } from '../clock/clock.service';
-import { InventoryService } from '../inventory/inventory.service';
+import { InventoryService, Resource } from '../inventory/inventory.service';
 
-import {Message} from 'primeng/primeng';
-import {MessageService} from 'primeng/components/common/messageservice';
+import { Message } from 'primeng/primeng';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'worker-panel',
@@ -13,42 +13,52 @@ import {MessageService} from 'primeng/components/common/messageservice';
 })
 
 export class WorkerComponent implements OnInit {
-  manager_count: number;
+  currency : Resource
+
   manager_cost: number;
+  workers: Resource
+  managers: Resource
 
 
-  worker_count: number;
   auto_workers_power: number;
   auto_workers_cost: number;
 
   tick() {
-    let auto = Math.floor((this.worker_count * this.auto_workers_power) + ((this.manager_count/10) * this.worker_count));
-    this.inventory.IncrementResource(auto);
+    let auto = Math.floor((this.workers.current * this.auto_workers_power) + ((this.managers.current / 10) * this.workers.current));
+    this.inventory.IncrementResource('paperclips', auto);
   }
-  constructor(private clock: ClockService, private inventory: InventoryService, private messageService:MessageService) {
-    this.worker_count = 0;
+  constructor(private clock: ClockService, private inventory: InventoryService, private messageService: MessageService) {
     this.auto_workers_power = 1;
     this.auto_workers_cost = 50;
 
-    this.manager_count=0;
-    this.manager_cost=100;
+    this.manager_cost = 100;
   }
   ngOnInit(): void {
     console.log("Hello ");
     this.clock.Tick_CheckIn(this);
+
+    this.workers = this.inventory.resources['worker'];
+    this.managers = this.inventory.resources['manager'];
+    this.currency = this.inventory.resources['currency']; 
+
   }
   IncrementWorker() {
-     this.inventory.current_resource -= this.auto_workers_cost;
-     this.worker_count++;
-     this.auto_workers_cost = Math.floor(this.auto_workers_cost * 1.1);
-     this.messageService.add({severity:'success', summary:'Worker Hired' });
-   }
-   
-   IncrementManager() {
-    this.inventory.current_resource -= this.manager_cost;
-    this.manager_count++;
-    this.manager_cost = Math.floor(this.manager_cost * 1.3);
-    this.messageService.add({severity:'success', summary:'Manager Hired'});
-    
+    if (this.inventory.Purchase('currency', this.auto_workers_cost)) {
+      this.inventory.IncrementResource("worker", 1);
+      this.auto_workers_cost = Math.floor(this.auto_workers_cost * 1.1);
+      this.messageService.add({ severity: 'success', summary: 'Worker Hired' });
+      return;
+    }
+    this.messageService.add({ severity: 'error', summary: 'Not enough funds' });    
+  }
+
+  IncrementManager() {
+    if (this.inventory.Purchase('currency', this.manager_cost)) {
+      this.inventory.IncrementResource("manager", 1);
+      this.manager_cost = Math.floor(this.manager_cost * 1.1);
+      this.messageService.add({ severity: 'success', summary: 'manager Hired' });
+      return;      
+    }
+    this.messageService.add({ severity: 'error', summary: 'Not enough funds' });    
   }
 }

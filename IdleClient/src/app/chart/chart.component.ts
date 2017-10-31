@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ClockService } from '../clock/clock.service'
-import { InventoryService } from '../inventory/inventory.service'
+import { InventoryService, Resource } from '../inventory/inventory.service'
 import { UIChart } from 'primeng/primeng';
 
 
@@ -10,6 +10,7 @@ import { UIChart } from 'primeng/primeng';
     templateUrl: './chart.component.html',
 })
 export class ChartComponent implements OnInit {
+    @Input() resource: Resource;
     @ViewChild('chart') chart: UIChart;
     options = {
         responsive: true,
@@ -50,21 +51,16 @@ export class ChartComponent implements OnInit {
         ]
     };
     tick() {
-
-
-        this.data.datasets[0].data.push(this.inventory.current_resource);
+        this.data.datasets[0].data.push(this.resource.current);
         if (this.data.datasets[0].data.length > 200) this.data.datasets[0].data.splice(0, 1);
-
         this.chart.refresh();
     }
     constructor(private clock: ClockService, private inventory: InventoryService) {
         clock.Tick_CheckIn(this);
-        this.inventory = inventory;
     }
 
 
     ngOnInit(): void {
-
     }
 
 }

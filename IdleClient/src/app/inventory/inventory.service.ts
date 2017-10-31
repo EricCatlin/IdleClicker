@@ -5,25 +5,58 @@ import { ClockService } from '../clock/clock.service'
 @Injectable()
 export class InventoryService {
 
-  IncrementResource(amount: number) {
-    this.current_resource += amount;
-    this.total_resource += amount;
+  IncrementResource(name: string, amount: number) {
+    let resource = this.resources[name];
+    if (!resource) { console.error("Resource not found"); return; }
+    resource.current += amount;
+    resource.total += amount;
   }
 
-  total_resource: number;
-  current_resource: number;
-  previous_resource: number;
-  delta_resource : number;
-  
-  tick(){
-    this.delta_resource = this.current_resource - this.previous_resource;
-    this.previous_resource   = this.current_resource;
+  Purchase(name: string, amount: number): boolean {
+    let resource = this.resources[name];
+    if (!resource) { console.error("Resource not found"); return; }
+    if (resource.current >= amount) {
+      resource.current -= amount;
+      return true;
+    }else{
+      return false;
+    }
   }
-  constructor(private clock : ClockService) {
-    this.current_resource = 10000;
-    this.total_resource = this.current_resource;
-    this.previous_resource = 0;
-    this.delta_resource = 0;
+
+
+  resources: {};
+
+
+  tick() {
+    Object.keys(this.resources).forEach(key => {
+      this.tick_resource(this.resources[key]);
+    });
+  }
+  constructor(private clock: ClockService) {
+    this.resources = {};
+    this.resources["currency"] = new Resource("currency", 100);
+    this.resources["paperclips"] = new Resource("paperclips", 1000);
+    this.resources["worker"] = new Resource("worker", 0);
+    this.resources["manager"] = new Resource("manager", 0);
+
+
     clock.Tick_CheckIn(this);
+  }
+  tick_resource(resource: Resource) {
+    resource.delta = resource.current - resource.previous;
+    resource.previous = resource.current;
+  }
+}
+
+export class Resource {
+  name: string;
+  current: number;
+  previous: number;
+  delta: number;
+  total: number;
+
+  constructor(name: string, current: number) {
+    this.name = name;
+    this.current = current;
   }
 }

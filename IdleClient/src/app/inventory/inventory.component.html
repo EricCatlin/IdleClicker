@@ -1,6 +1,5 @@
 <div class="ui-g-12">
-    <button pButton class="ui-g-6" type="button" (click)="IncrementResource(1)" label="Click">
-    </button>
-    <div class="ui-g-3">Resources: {{inventory.current_resource}}</div>
-    <div class="ui-g-3">{{inventory.delta_resource}} per tick</div>
+    
+    <div class="ui-g-3">{{resource.name}}: {{resource.current}}</div>
+    <div class="ui-g-3">{{resource.delta}} per tick</div>
 </div>

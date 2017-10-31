@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { InventoryService } from './inventory.service'
+import { Resource } from './inventory.service'
 import { Observable } from 'rxjs/Rx';
 
 @Component({
@@ -11,12 +11,13 @@ import { Observable } from 'rxjs/Rx';
 
 
 export class InventoryComponent implements OnInit {
-  constructor(private inventory: InventoryService) {
-    this.inventory = inventory;
+  @Input() resource: Resource;
+
+  constructor() {
+
   }
 
 
-  IncrementResource = ((x) => this.inventory.IncrementResource(x))
 
   ngOnInit(){
 

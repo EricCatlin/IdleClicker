@@ -1,0 +1,23 @@
+<p-panel header="Market" [toggleable]="true">
+    <div *ngFor="let offer of offers">
+        <p-toolbar>
+            <div class="ui-toolbar-group-left">
+                <button pButton type="button" label="{{offer.cost}} {{offer.selling}}" icon="fa-plus"></button>
+                <button pButton type="button" label="{{offer.amount}} {{offer.buying}}" icon="fa-minus"></button>
+                <i class="fa fa-at"></i>
+                <button pButton type="button" label="{{offer.cost_per | currency:'USD':true}} per"></button>
+
+
+
+            </div>
+
+            <div class="ui-toolbar-group-right">
+                <button pButton type="button" icon="fa-check" (click)="Accept(offer)"></button>
+                <i class="fa fa-bars"></i>
+                <button pButton type="button" icon="fa-close" (click)="Reject(offer)"></button>
+
+            </div>
+        </p-toolbar>
+
+    </div>
+</p-panel>

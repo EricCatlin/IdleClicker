@@ -10,13 +10,18 @@ import { InventoryService} from  "./inventory/inventory.service";
 import { AppComponent }        from './app.component';
 
 import { GameComponent }  from './game/game.component';
+
 import { ResourceComponent }  from './resource/resource.component';
+import { CurrencyComponent }  from './currency/currency.component';
+
 
 import { WorkerComponent }  from './worker/worker.component';
 
 import { TimeComponent }  from './time/time.component';
 import { InventoryComponent }  from './inventory/inventory.component';
 import { ChartComponent }  from './chart/chart.component';
+import { MarketComponent }  from './market/market.component';
+
 
 
 import { DashboardComponent }     from './dashboard/dashboard.component';
@@ -31,7 +36,7 @@ import {FieldsetModule} from 'primeng/primeng';
 import {PanelModule} from 'primeng/primeng';
 import {GrowlModule} from 'primeng/primeng';
 import {MessageService} from 'primeng/components/common/messageservice';
-
+import {InputSwitchModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,9 @@ import {MessageService} from 'primeng/components/common/messageservice';
     DashboardComponent,
     GameComponent,
     ResourceComponent,
+    CurrencyComponent,
+
+    MarketComponent,
     
     TimeComponent,
     InventoryComponent,
@@ -53,13 +61,13 @@ import {MessageService} from 'primeng/components/common/messageservice';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    
     ToolbarModule,
     ButtonModule,
     ChartModule,
     FieldsetModule,
     PanelModule,
-    GrowlModule
+    GrowlModule,
+    InputSwitchModule
   ],
   providers: [ClockService, InventoryService, MessageService],
   bootstrap: [AppComponent]

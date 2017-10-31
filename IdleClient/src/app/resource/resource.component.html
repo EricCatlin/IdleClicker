@@ -1,12 +1,19 @@
-<p-panel header="Resource" [toggleable]="true" class='ui-g'>
+<p-panel header="Resource" [toggleable]="true">
 
-    
-    <inventory-panel></inventory-panel>
+    <button pButton type="button" (click)="Increment(1)" label="Click">
+    </button>
+    <inventory-panel [resource]="resource"></inventory-panel>
 
     <worker-panel></worker-panel>
 
-    <p-footer>
-        <chart-panel></chart-panel>
-    </p-footer>
+
+
+
+
+    <p-inputSwitch [(ngModel)]="show_chart"></p-inputSwitch>
+
+
+    <chart-panel *ngIf="show_chart" [resource]="resource"></chart-panel>
+
 
 </p-panel>

@@ -3,11 +3,12 @@ import { InventoryService, Resource } from '../inventory/inventory.service';
 
 
 @Component({
-  selector: 'resource-panel',
-  templateUrl: `./resource.component.html`
+  selector: 'currency-panel',
+  templateUrl: `./currency.component.html`
 })
-export class ResourceComponent  {
+export class CurrencyComponent  {
   @Input() resource: Resource;
+
   constructor(private inventory:InventoryService){}
   show_chart=false;
 
