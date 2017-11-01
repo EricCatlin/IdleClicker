@@ -13,36 +13,51 @@ export class MarketComponent implements OnInit {
     clock.Tick_CheckIn(this);
   }
 
+  specials: Offer[] = [];
   offers: Offer[] = [];
+  
   ngOnInit() {
-    let offer = new Offer('currency', 'paperclips', 100, 1000);
-    this.offers.push(offer);
+    this.specials.push(new Offer('currency', 'paperclips', 100, 1000));
+
+    this.offers.push(new Offer('currency', 'paperclips', 1, 10, 1));
+    this.offers.push(new Offer('currency', 'paperclips', 10, 90, 10));
+    this.offers.push(new Offer('currency', 'paperclips', 100, 800, 100));
+    this.offers.push(new Offer('currency', 'paperclips', 1000, 6000, 200));
   }
-  Accept(offer: Offer) {
+  AcceptSpecial(offer: Offer) {
     if (this.inventory.Purchase(offer.buying, offer.amount)) {
       this.inventory.IncrementResource(offer.selling, offer.cost);
-      this.offers.splice(this.offers.indexOf(offer), 1);
+      this.specials.splice(this.specials.indexOf(offer), 1);
     } else {
 
     }
   }
-  Reject(offer: Offer) {
+  Accept(offer: Offer) {
+    if (this.inventory.Purchase(offer.buying, offer.amount)) {
+      this.inventory.IncrementResource(offer.selling, offer.cost);
+      offer.cooldown = offer._cooldown;
+    } else {
 
-    this.offers.splice(this.offers.indexOf(offer), 1);
-
+    }
+  }
+  RejectSpecial(offer: Offer) {
+    this.specials.splice(this.specials.indexOf(offer), 1);
   }
   tick() {
-    this.offers.forEach((offer) => {
+    this.specials.forEach((offer) => {
       if (offer.time-- < 0) {
-        this.offers.splice(this.offers.indexOf(offer), 1);
+        this.specials.splice(this.specials.indexOf(offer), 1);
       }
-    })
+    });
+    this.offers.forEach((offer) => {
+      if (offer.cooldown > 0) {
+        offer.cooldown--;
+      }
+    });
 
-
-    if (Math.random() < (1 / (this.offers.length * 10))) {
-
-      let offer = new Offer('currency', 'paperclips', getRndInteger(10, 500), getRndInteger(100, 5000), getRndInteger(35, 400));
-      this.offers.push(offer);
+    if (Math.random() < (1 / ((this.specials.length + 1)  * 100))) {
+      const offer = new Offer('currency', 'paperclips', getRndInteger(10, 500), getRndInteger(100, 5000), getRndInteger(35, 400));
+      this.specials.push(offer);
     }
   }
 }
@@ -54,15 +69,21 @@ class Offer {
   buying: string;
   cost: number;
   time: number;
+  cooldown: number;
+  _cooldown: number;
   amount: number;
   cost_per: number;
-  constructor(selling: string, buying: string, cost: number, amount: number, time: number = 100) {
+  id: string;
+  constructor(selling: string, buying: string, cost: number, amount: number, cooldown: number = 10, time: number = 100) {
     this.selling = selling;
     this.buying = buying;
     this.cost = cost;
     this.amount = amount;
     this.cost_per = cost / amount;
     this.time = time;
+    this.cooldown = cooldown;
+    this._cooldown = cooldown;
+    this.id = Math.floor(Math.random() * 100000) + '';
   }
 
 
