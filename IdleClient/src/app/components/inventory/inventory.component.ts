@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Resource } from './inventory.service'
+import { Resource } from '../../services/inventory.service'
 import { Observable } from 'rxjs/Rx';
 
 @Component({

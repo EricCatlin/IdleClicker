@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { InventoryService, Resource } from '../inventory/inventory.service';
+import { InventoryService, Resource } from '../../services/inventory.service';
 
 @Component({
   selector: 'my-games',

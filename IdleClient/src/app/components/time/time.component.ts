@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ClockService } from '../clock/clock.service';
+import { ClockService } from '../../services/clock.service';
 
 @Component({
   selector: 'time-panel',

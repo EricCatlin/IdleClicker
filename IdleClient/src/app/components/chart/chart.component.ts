@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { ClockService } from '../clock/clock.service'
-import { InventoryService, Resource } from '../inventory/inventory.service'
+import { ClockService } from '../../services/clock.service'
+import { InventoryService, Resource } from '../../services/inventory.service'
 import { UIChart } from 'primeng/primeng';
 
 

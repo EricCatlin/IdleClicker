@@ -4,27 +4,27 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpModule } from '@angular/http';
 
-import { ClockService } from "./clock/clock.service";
-import { InventoryService } from "./inventory/inventory.service";
+import { ClockService } from "./services/clock.service";
+import { InventoryService } from "./services/inventory.service";
 
 import { AppComponent } from './app.component';
 
-import { GameComponent } from './game/game.component';
+import { GameComponent } from './components/game/game.component';
 
-import { ResourceComponent } from './resource/resource.component';
-import { CurrencyComponent } from './currency/currency.component';
-
-
-import { WorkerComponent } from './worker/worker.component';
-
-import { TimeComponent } from './time/time.component';
-import { InventoryComponent } from './inventory/inventory.component';
-import { ChartComponent } from './chart/chart.component';
-import { MarketComponent } from './market/market.component';
+import { ResourceComponent } from './components/resource/resource.component';
+import { CurrencyComponent } from './components/currency/currency.component';
 
 
+import { WorkerComponent } from './components/worker/worker.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { TimeComponent } from './components/time/time.component';
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { MarketComponent } from './components/market/market.component';
+
+
+
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 
 
@@ -39,7 +39,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { InputSwitchModule } from 'primeng/primeng';
 import { BlockUIModule } from 'primeng/primeng';
 import {ProgressBarModule} from 'primeng/primeng';
-
+import {DataListModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -72,7 +72,8 @@ import {ProgressBarModule} from 'primeng/primeng';
     GrowlModule,
     InputSwitchModule,
     BlockUIModule,
-    ProgressBarModule
+    ProgressBarModule,
+    DataListModule
   ],
   providers: [ClockService, InventoryService, MessageService],
   bootstrap: [AppComponent]

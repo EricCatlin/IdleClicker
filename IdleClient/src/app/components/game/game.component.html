@@ -1,0 +1,10 @@
+<h1>Angular Profiler</h1>
+<p-growl [(value)]="msgs"></p-growl>
+<time-panel class='ui-g-12 ui-g-nopad'></time-panel>
+<div class='ui-g-nopad ui-g-12 ui-lg-6'>
+    <currency-panel class='ui-g-12' [resource]='inventory.resources["currency"]'></currency-panel>
+    <resource-panel class='ui-g-12' [resource]='inventory.resources["lightbulbs"]'></resource-panel>
+</div>
+<div class='ui-g-nopad ui-g-12 ui-lg-6'>
+    <market-panel class='ui-g-12'></market-panel>
+</div>

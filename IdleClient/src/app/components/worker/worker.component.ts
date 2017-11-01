@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ClockService } from '../clock/clock.service';
-import { InventoryService, Resource } from '../inventory/inventory.service';
+import { ClockService } from '../../services/clock.service';
+import { InventoryService, Resource } from '../../services/inventory.service';
 
 import { Message } from 'primeng/primeng';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -25,7 +25,7 @@ export class WorkerComponent implements OnInit {
 
   tick() {
     let auto = Math.floor((this.workers.current * this.auto_workers_power) + ((this.managers.current / 10) * this.workers.current));
-    this.inventory.IncrementResource('paperclips', auto);
+    this.inventory.IncrementResource('lightbulbs', auto);
   }
   constructor(private clock: ClockService, private inventory: InventoryService, private messageService: MessageService) {
     this.auto_workers_power = 1;

@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
-import { ClockService } from '../clock/clock.service'
+import { ClockService } from './clock.service'
 @Injectable()
 export class InventoryService {
 
@@ -18,7 +18,7 @@ export class InventoryService {
     if (resource.current >= amount) {
       resource.current -= amount;
       return true;
-    }else{
+    } else {
       return false;
     }
   }
@@ -35,7 +35,7 @@ export class InventoryService {
   constructor(private clock: ClockService) {
     this.resources = {};
     this.resources["currency"] = new Resource("currency", 100);
-    this.resources["paperclips"] = new Resource("paperclips", 1000);
+    this.resources["lightbulbs"] = new Resource("lightbulbs", 1000, "fa fa-lightbulb");
     this.resources["worker"] = new Resource("worker", 0);
     this.resources["manager"] = new Resource("manager", 0);
 
@@ -48,15 +48,26 @@ export class InventoryService {
   }
 }
 
-export class Resource {
+export interface IResource {
   name: string;
   current: number;
   previous: number;
   delta: number;
   total: number;
+  icon: string;
+}
+export class Resource implements IResource {
+  name: string;
+  current: number;
+  previous: number;
+  delta: number;
+  total: number;
+  icon: string;
 
-  constructor(name: string, current: number) {
+  constructor(name: string, current: number, icon: string = "") {
     this.name = name;
     this.current = current;
+    this.icon = icon;
   }
 }
+

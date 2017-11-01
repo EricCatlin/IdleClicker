@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InventoryService, Resource } from '../inventory/inventory.service';
-import { ClockService } from '../clock/clock.service';
+import { InventoryService, Resource } from '../../services/inventory.service';
+import { ClockService } from '../../services/clock.service';
 import { CurrencyPipe } from '@angular/common';
 
 
@@ -13,16 +13,16 @@ export class MarketComponent implements OnInit {
     clock.Tick_CheckIn(this);
   }
 
-  specials: Offer[] = [];
+  specials: Special[] = [];
   offers: Offer[] = [];
   
   ngOnInit() {
-    this.specials.push(new Offer('currency', 'paperclips', 100, 1000));
+    this.specials.push(new Special('currency', 'lightbulbs', 100, 1000, 10000));
 
-    this.offers.push(new Offer('currency', 'paperclips', 1, 10, 1));
-    this.offers.push(new Offer('currency', 'paperclips', 10, 90, 10));
-    this.offers.push(new Offer('currency', 'paperclips', 100, 800, 100));
-    this.offers.push(new Offer('currency', 'paperclips', 1000, 6000, 200));
+    this.offers.push(new Offer('currency', 'lightbulbs', 1, 10, 1));
+    this.offers.push(new Offer('currency', 'lightbulbs', 10, 90, 10));
+    this.offers.push(new Offer('currency', 'lightbulbs', 100, 800, 100));
+    this.offers.push(new Offer('currency', 'lightbulbs', 1000, 6000, 200));
   }
   AcceptSpecial(offer: Offer) {
     if (this.inventory.Purchase(offer.buying, offer.amount)) {
@@ -45,18 +45,21 @@ export class MarketComponent implements OnInit {
   }
   tick() {
     this.specials.forEach((offer) => {
-      if (offer.time-- < 0) {
+      if (offer.expires-- <= 0) {
         this.specials.splice(this.specials.indexOf(offer), 1);
       }
     });
     this.offers.forEach((offer) => {
       if (offer.cooldown > 0) {
         offer.cooldown--;
+        offer.progress = Math.floor(((offer._cooldown-offer.cooldown)/offer._cooldown)*100)
+      }else{
+        offer.progress = 0;
       }
     });
 
     if (Math.random() < (1 / ((this.specials.length + 1)  * 100))) {
-      const offer = new Offer('currency', 'paperclips', getRndInteger(10, 500), getRndInteger(100, 5000), getRndInteger(35, 400));
+      const offer = new Offer('currency', 'lightbulbs', getRndInteger(10, 500), getRndInteger(100, 5000), getRndInteger(35, 400));
       this.specials.push(offer);
     }
   }
@@ -64,27 +67,63 @@ export class MarketComponent implements OnInit {
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-class Offer {
+
+
+
+export interface IOffer{
   selling: string;
   buying: string;
   cost: number;
-  time: number;
+  expires: number;
   cooldown: number;
   _cooldown: number;
   amount: number;
   cost_per: number;
   id: string;
-  constructor(selling: string, buying: string, cost: number, amount: number, cooldown: number = 10, time: number = 100) {
+  progress:number;
+}
+class Offer implements IOffer{
+  selling: string;
+  buying: string;
+  cost: number;
+  expires: number;
+  cooldown: number;
+  _cooldown: number;
+  amount: number;
+  cost_per: number;
+  id: string;
+  progress:number;
+  constructor(selling: string, buying: string, cost: number, amount: number, cooldown: number = 10, expires: number = 100) {
     this.selling = selling;
     this.buying = buying;
     this.cost = cost;
     this.amount = amount;
     this.cost_per = cost / amount;
-    this.time = time;
+    this.expires = expires;
     this.cooldown = cooldown;
     this._cooldown = cooldown;
     this.id = Math.floor(Math.random() * 100000) + '';
   }
+}
 
-
+class Special implements IOffer{
+  selling: string;
+  buying: string;
+  cost: number;
+  expires: number;
+  cooldown: number;
+  _cooldown: number;
+  amount: number;
+  cost_per: number;
+  id: string;
+  progress:number;
+  constructor(selling: string, buying: string, cost: number, amount: number, expires: number = 100) {
+    this.selling = selling;
+    this.buying = buying;
+    this.cost = cost;
+    this.amount = amount;
+    this.cost_per = cost / amount;
+    this.expires = expires;
+    this.id = Math.floor(Math.random() * 100000) + '';
+  }
 }

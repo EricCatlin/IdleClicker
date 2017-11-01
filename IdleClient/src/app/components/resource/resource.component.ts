@@ -1,14 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { InventoryService, Resource } from '../inventory/inventory.service';
+import { InventoryService, Resource } from '../../services/inventory.service';
 
 
 @Component({
-  selector: 'currency-panel',
-  templateUrl: `./currency.component.html`
+  selector: 'resource-panel',
+  templateUrl: `./resource.component.html`
 })
-export class CurrencyComponent  {
+export class ResourceComponent  {
   @Input() resource: Resource;
-
   constructor(private inventory:InventoryService){}
   show_chart=false;
 
