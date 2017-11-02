@@ -14,7 +14,6 @@ import { MessageService } from 'primeng/components/common/messageservice';
 
 export class WorkerComponent implements OnInit {
   currency : Resource
-
   manager_cost: number;
   workers: Resource
   managers: Resource
@@ -34,7 +33,6 @@ export class WorkerComponent implements OnInit {
     this.manager_cost = 100;
   }
   ngOnInit(): void {
-    console.log("Hello ");
     this.clock.Tick_CheckIn(this);
 
     this.workers = this.inventory.resources['worker'];

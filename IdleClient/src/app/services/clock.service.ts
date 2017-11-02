@@ -6,6 +6,7 @@ export class ClockService {
     TickList = [];
     ticker;
     clock_speed = 1000;
+    ticks;
     Tick_CheckIn(tick): Promise<boolean> {
         console.log("Checking in ticker");
 
@@ -13,6 +14,7 @@ export class ClockService {
         return Promise.resolve(true);
     }
     Tick() {
+        this.ticks++;
         this.TickList.forEach(ticker => {
             ticker.tick();
         });
