@@ -14,11 +14,11 @@ export class UpgradesService {
       upgrade.owned = true;
       this.owned[upgrade.id] = true;
     }
+    return this.owned[upgrade.id];
   }
 
   constructor(private clock: ClockService, private inventory: InventoryService) {
     this.upgrades = [];
-    this.upgrades.push(new Upgrade('DBLCLICK', 'Double clicking power', 'doubles your clicking power', 100, 'currency'));
     this.upgrades.push(new Upgrade('HLVCOOL', 'Half-Cooldowns', 'Halves the cook', 100, 'currency'));
   }
 }
@@ -49,5 +49,16 @@ export class Upgrade implements IUpgrade {
     this.owned = false;
     this.unlocked = false;
   }
+}
+export interface IUpgradable {
+  owned_upgrades: Object;
+  AddUpgrade(offer: Upgrade);
+}
+
+export interface IUpgrades {
+  owned_upgrades: Object;
+  upgrade_list: Upgrade[];
+  offered_upgrades: Upgrade[];
+  AddUpgrade(offer: Upgrade);
 }
 
