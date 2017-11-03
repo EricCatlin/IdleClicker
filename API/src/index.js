@@ -17,9 +17,6 @@ let app = express();
 app.server = http.createServer(app);
 var io = require('socket.io')(app.server);
 
-
-
-
 // logger
 app.use(morgan('dev'));
 
