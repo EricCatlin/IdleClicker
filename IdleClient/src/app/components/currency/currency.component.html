@@ -1,6 +1,4 @@
-<p-panel header="Currency" [toggleable]="true" >
+<p-panel header="Currency" [toggleable]="true">
         <inventory-panel [resource]="resource"></inventory-panel>
-        <p-inputSwitch [(ngModel)]="show_chart"></p-inputSwitch>
-        <chart-panel *ngIf="show_chart"  [resource]="resource"></chart-panel>
-
+        <chart-panel [resource]="resource"></chart-panel>
 </p-panel>

@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 
 import { ClockService } from "./services/clock.service";
 import { InventoryService } from "./services/inventory.service";
+import { UpgradesService } from "./services/upgrades.service";
+
 
 import { AppComponent } from './app.component';
 
@@ -22,6 +24,7 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { MarketComponent } from './components/market/market.component';
 
+import { UpgradeComponent } from './components/upgrades/upgrades.component';
 
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -56,7 +59,8 @@ import {DataListModule} from 'primeng/primeng';
     InventoryComponent,
     ChartComponent,
 
-    WorkerComponent
+    WorkerComponent,
+    UpgradeComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,7 @@ import {DataListModule} from 'primeng/primeng';
     ProgressBarModule,
     DataListModule
   ],
-  providers: [ClockService, InventoryService, MessageService],
+  providers: [ClockService, InventoryService, MessageService, UpgradesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

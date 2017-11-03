@@ -2,19 +2,19 @@
 
     <button pButton type="button" (click)="Increment(1)" label="Click">
     </button>
+
     <inventory-panel [resource]="resource"></inventory-panel>
+
 
     <worker-panel></worker-panel>
 
 
 
 
-    <upgrade-panel [upgradeTarget]="BindableFunction"class='ui-g-12'></upgrade-panel>
-    
-    <p-inputSwitch [(ngModel)]="show_chart"></p-inputSwitch>
+    <upgrade-panel [upgrade_list]="upgrade_list" [owned_upgrades]="owned_upgrades"></upgrade-panel>
 
 
-    <chart-panel *ngIf="show_chart" [resource]="resource"></chart-panel>
+    <chart-panel [resource]="resource"></chart-panel>
 
 
 </p-panel>

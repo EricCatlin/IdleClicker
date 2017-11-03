@@ -2,15 +2,20 @@ import { Component, Input, OnInit } from '@angular/core';
 import { InventoryService, Resource } from '../../services/inventory.service';
 import { ClockService } from '../../services/clock.service';
 import { CurrencyPipe } from '@angular/common';
-
+import { Upgrade, IUpgradable } from '../../services/upgrades.service';
+import { Upgrades } from './upgrades';
 
 @Component({
   selector: 'market-panel',
   templateUrl: `./market.component.html`
 })
-export class MarketComponent implements OnInit {
+export class MarketComponent implements OnInit, IUpgradable{
+  owned_upgrades: Object;
+  upgrade_list: Upgrade[];
   constructor(private inventory: InventoryService, private clock: ClockService) {
     clock.Tick_CheckIn(this);
+    this.upgrade_list = Upgrades;
+    this.owned_upgrades = {};
   }
 
   specials: Special[] = [];
@@ -18,7 +23,6 @@ export class MarketComponent implements OnInit {
   
   ngOnInit() {
     this.specials.push(new Special('currency', 'lightbulbs', 100, 1000, 10000));
-
     this.offers.push(new Offer('currency', 'lightbulbs', 1, 10, 1));
     this.offers.push(new Offer('currency', 'lightbulbs', 10, 90, 10));
     this.offers.push(new Offer('currency', 'lightbulbs', 100, 800, 100));
@@ -43,6 +47,11 @@ export class MarketComponent implements OnInit {
   RejectSpecial(offer: Offer) {
     this.specials.splice(this.specials.indexOf(offer), 1);
   }
+  CalculateCooldown() : number{
+    let cooldown = 1;
+    if(this.owned_upgrades["DBLCOOL"]) {cooldown*=2}
+    return cooldown;
+  }
   tick() {
     this.specials.forEach((offer) => {
       if (offer.expires-- <= 0) {
@@ -51,7 +60,7 @@ export class MarketComponent implements OnInit {
     });
     this.offers.forEach((offer) => {
       if (offer.cooldown > 0) {
-        offer.cooldown--;
+        offer.cooldown -= this.CalculateCooldown();
         offer.progress = Math.floor(((offer._cooldown-offer.cooldown)/offer._cooldown)*100)
       }else{
         offer.progress = 0;

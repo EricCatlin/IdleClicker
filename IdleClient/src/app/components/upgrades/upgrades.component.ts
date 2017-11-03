@@ -4,28 +4,34 @@ import { UpgradesService, Upgrade, IUpgradable, IUpgrades } from '../../services
 
 import { ClockService } from '../../services/clock.service';
 import { CurrencyPipe } from '@angular/common';
+import { EventEmitter } from 'events';
 
 
 @Component({
   selector: 'upgrade-panel',
-  templateUrl: `./upgrade.component.html`
+  templateUrl: `./upgrades.component.html`
 })
 
 export class UpgradeComponent implements OnInit, IUpgrades {
-  upgrade_list: Upgrade[];
-  offered_upgrades: Upgrade[] = [];
-  owned_upgrades: Object;
-  @Input() upgrade_target: IUpgradable;
+  @Input() upgrade_list: Upgrade[];
+  @Input() owned_upgrades: Object;
+  owned_upgrade_array : Upgrade[];
+  offered_upgrades: Upgrade[];
   ngOnInit(): void {
   }
-  AddUpgrade(offer: Upgrade) {
-    throw new Error("Method not implemented.");
+  AddUpgrade(upgrade: Upgrade) {
+    if (this.inventory.Purchase(upgrade.cost_resource_key, upgrade.cost)){
+      upgrade.owned = true;
+      this.owned_upgrades[upgrade.id] = true;
+      this.owned_upgrade_array.push(upgrade);
+      
+     this.upgrade_list.splice(this.upgrade_list.indexOf(upgrade), 1);
+      
+    }
   }
   constructor(private inventory: InventoryService, private upgrades: UpgradesService) {
-    this.offered_upgrades = [];
     this.owned_upgrades = {};
-    this.upgrade_list = [];
-    this.owned_upgrades = [];
+    this.owned_upgrade_array=[];
   }
 }
 

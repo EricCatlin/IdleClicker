@@ -1,37 +1,53 @@
 <p-panel header="Market" [toggleable]="true">
 
 
+    <div class='ui-g'>
+        <p-panel header="Offers" [toggleable]="true" class='ui-g-12'>
+            <div *ngFor="let offer of offers" class='ui-g'>
+                <div class='ui-g-1'>
+                    <i class='fa fa-exchange'></i>
+                </div>
+                <div class='ui-g-8'>
+                    <div>{{offer.cost}} {{offer.selling}}
+                        <br/> {{offer.amount}} {{offer.buying}}</div>
+                </div>
 
-    <div *ngFor="let offer of offers" class='ui-g-12'>
-        <div class='ui-g-1'>
-            <i class='fa fa-exchange'></i>
-        </div>
-        <div class='ui-g-8'>
-            <div>{{offer.cost}} {{offer.selling}}
-                <br/> {{offer.amount}} {{offer.buying}}</div>
-        </div>
+                <div class='ui-g-3'>
+                    <button label="{{offer.cost}}" *ngIf="offer.cooldown <= 0" [disabled]="offer.amount > inventory.resources[offer.buying].current"
+                        pButton type="button" icon="fa-check" (click)="Accept(offer)"></button>
+                    <p-progressBar *ngIf="offer._cooldown > 1 && offer.cooldown > 0" [value]="offer.progress"></p-progressBar>
+                </div>
+            </div>
+        </p-panel>
 
-        <div class='ui-g-3'>
-            <button label="{{offer.cost}}" *ngIf="offer.cooldown == 0" [disabled]="offer.amount > inventory.resources[offer.buying].current"
-                pButton type="button" icon="fa-check" (click)="Accept(offer)"></button>
-                <p-progressBar *ngIf="offer._cooldown > 1 && offer.cooldown > 0" [value]="offer.progress"></p-progressBar>
-        </div>
+        <p-panel header="Specials" [toggleable]="true" class='ui-g-12'>
+            <div *ngFor="let offer of specials" class='ui-g'>
+                <div class='ui-g-1'>
+                    <i class='fa fa-exchange'></i>
+                </div>
+                <div class='ui-g-8'>
+                    <div>{{offer.cost}} {{offer.selling}}
+                        <br/> {{offer.amount}} {{offer.buying}}</div>
+                </div>
+
+                <div class='ui-g-3'>
+                    <button label="{{offer.cost}}" *ngIf="offer.cooldown <= 0" [disabled]="offer.amount > inventory.resources[offer.buying].current"
+                        pButton type="button" icon="fa-check" (click)="Accept(offer)"></button>
+                    <p-progressBar *ngIf="offer._cooldown > 1 && offer.cooldown > 0" [value]="offer.progress"></p-progressBar>
+                </div>
+            </div>
+        </p-panel>
+
     </div>
 
-
-
-
-
-    <p-panel header="Specials" [toggleable]="true" class='ui-g-6' *ngFor="let offer of specials">
-        <p-header>
-            <div class='ui-g-10'>{{offer.amount}} {{offer.buying}}</div>
-            <div class='ui-g-2'>{{offer.expires}} </div>
-        </p-header>
-        <div class='ui-g'>{{offer.cost}} {{offer.selling}} @ {{offer.cost_per | currency:'USD':true}} per</div>
-        <p-footer class='ui-g'>
-            <button class='ui-g-2' [disabled]="offer.amount > inventory.resources[offer.buying].current" pButton type="button" icon="fa-check"
-                (click)="AcceptSpecial(offer)"></button>
-            <button class='ui-g-2 ui-g-offset-7' pButton type="button" icon="fa-close" (click)="RejectSpecial(offer)"></button>
-        </p-footer>
-    </p-panel>
+    <div class='ui-g'>
+        <upgrade-panel [upgrade_list]="upgrade_list" [owned_upgrades]="owned_upgrades" class='ui-g-12'></upgrade-panel>
+    </div>
 </p-panel>
+
+
+
+
+
+
+

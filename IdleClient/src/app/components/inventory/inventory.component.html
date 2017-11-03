@@ -1,5 +1,6 @@
-<div class="ui-g-12">
-    
-    <div class="ui-g-3">{{resource.name}}: {{resource.current}}</div>
-    <div class="ui-g-3">{{resource.delta}} per tick</div>
-</div>
+<p-panel header="Inventory" [toggleable]="true">
+    <div class='ui-g'>
+        <div class="ui-g-6">{{resource.name}}: {{resource.current}}</div>
+        <div class="ui-g-6">{{resource.delta}} per tick</div>
+    </div>
+</p-panel>

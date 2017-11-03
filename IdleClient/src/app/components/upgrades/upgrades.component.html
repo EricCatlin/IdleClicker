@@ -1,16 +1,26 @@
-<p-panel header="Upgrade" [toggleable]="true">
-    <div *ngFor="let offer of offers" class='ui-g-12'>
-        <div class='ui-g-1'>
-            <i class='fa fa-exchange'></i>
-        </div>
-        <div class='ui-g-8'>
-            <div>
-               </div>
-        </div>
+<p-panel header="Upgrades" [toggleable]="true">
+    <div class='ui-g' >
+        <p-panel header="Available" [toggleable]="true" class='ui-g-12' *ngIf='upgrade_list.length>0'>
+            <div *ngFor="let offer of upgrade_list" class='ui-g'>
 
-        <div class='ui-g-3'>
-            <button label="{{offer.cost}} {{offer.cost_resource_key}}" [disabled]="offer.cost > inventory.resources[offer.cost_resource_key].current"
-                pButton type="button" icon="fa-check" (click)="Accept(offer)"></button>
-        </div>
+                <div class='ui-g-8'>
+                    <div>{{offer.name}}</div>
+                </div>
+
+                <div class='ui-g-3'>
+                    <button [disabled]='offer.cost > inventory.resources[offer.cost_resource_key].current' label="{{offer.cost}} {{offer.cost_resource_key}}" pButton type="button" icon="fa-check" (click)="AddUpgrade(offer)"></button>
+
+                </div>
+            </div>
+        </p-panel>
+        <p-panel header="Purchased" [toggleable]="true" class='ui-g-12' *ngIf='owned_upgrade_array.length>0'>
+            <div *ngFor="let item of owned_upgrade_array">
+
+                
+                    <div>{{item.name}}</div>
+        
+            </div>
+        </p-panel>
     </div>
+
 </p-panel>

@@ -13,6 +13,7 @@ export class UpgradesService {
     if (this.inventory.Purchase(upgrade.cost_resource_key, upgrade.cost)){
       upgrade.owned = true;
       this.owned[upgrade.id] = true;
+    
     }
     return this.owned[upgrade.id];
   }
@@ -52,7 +53,7 @@ export class Upgrade implements IUpgrade {
 }
 export interface IUpgradable {
   owned_upgrades: Object;
-  AddUpgrade(offer: Upgrade);
+  upgrade_list: Upgrade[];
 }
 
 export interface IUpgrades {
