@@ -8,6 +8,7 @@ import { Upgrades } from './upgrades'
   templateUrl: `./resource.component.html`
 })
 export class ResourceComponent implements IUpgradable {
+  UpgradeCallback: Function;
   @Input() resource: Resource;
   show_chart = false;
   owned_upgrades: Object;

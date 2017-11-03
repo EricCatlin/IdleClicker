@@ -36,6 +36,11 @@ export class MarketComponent implements OnInit, IUpgradable{
 
     }
   }
+  UpgradeCallback(upgrade: Upgrade){
+    if(upgrade.id == "CONTRACT1"){
+      this.offers.push(new Offer('currency', 'lightbulbs', 100, 500, 1));
+    }
+  }
   Accept(offer: Offer) {
     if (this.inventory.Purchase(offer.buying, offer.amount)) {
       this.inventory.IncrementResource(offer.selling, offer.cost);
@@ -53,6 +58,7 @@ export class MarketComponent implements OnInit, IUpgradable{
     return cooldown;
   }
   tick() {
+    
     this.specials.forEach((offer) => {
       if (offer.expires-- <= 0) {
         this.specials.splice(this.specials.indexOf(offer), 1);

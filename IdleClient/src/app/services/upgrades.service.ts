@@ -54,6 +54,7 @@ export class Upgrade implements IUpgrade {
 export interface IUpgradable {
   owned_upgrades: Object;
   upgrade_list: Upgrade[];
+  UpgradeCallback: Function;
 }
 
 export interface IUpgrades {
