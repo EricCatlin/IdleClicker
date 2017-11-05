@@ -1,6 +1,4 @@
 <p-panel header="Market" [toggleable]="true">
-
-
     <div class='ui-g'>
         <p-panel header="Offers" [toggleable]="true" class='ui-g-12'>
             <div *ngFor="let offer of offers" class='ui-g'>
@@ -31,9 +29,8 @@
                 </div>
 
                 <div class='ui-g-3'>
-                    <button label="{{offer.cost}}" *ngIf="offer.cooldown <= 0" [disabled]="offer.amount > inventory.resources[offer.buying].current"
+                    <button label="{{offer.cost}}"  [disabled]="offer.amount > inventory.resources[offer.buying].current"
                         pButton type="button" icon="fa-check" (click)="Accept(offer)"></button>
-                    <p-progressBar *ngIf="offer._cooldown > 1 && offer.cooldown > 0" [value]="offer.progress"></p-progressBar>
                 </div>
             </div>
         </p-panel>
@@ -41,7 +38,7 @@
     </div>
 
     <div class='ui-g'>
-        <upgrade-panel [upgrade_list]="upgrade_list" [owned_upgrades]="owned_upgrades" [callback]="this" class='ui-g-12'></upgrade-panel>
+        <upgrade-panel *ngIf="upgrades.owned_upgrades['1000LIGHTBULBS']" [upgrade_list]="upgrade_list"  [callback]="this" class='ui-g-12'></upgrade-panel>
     </div>
 </p-panel>
 

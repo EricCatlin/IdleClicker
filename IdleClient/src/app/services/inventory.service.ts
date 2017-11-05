@@ -34,8 +34,8 @@ export class InventoryService {
   }
   constructor(private clock: ClockService) {
     this.resources = {};
-    this.resources["currency"] = new Resource("currency", 100);
-    this.resources["lightbulbs"] = new Resource("lightbulbs", 1000, "fa fa-lightbulb");
+    this.resources["currency"] = new Resource("currency", 90);
+    this.resources["lightbulbs"] = new Resource("lightbulbs", 0, "fa fa-lightbulb");
     this.resources["worker"] = new Resource("worker", 0);
     this.resources["manager"] = new Resource("manager", 0);
 
@@ -64,10 +64,11 @@ export class Resource implements IResource {
   total: number;
   icon: string;
 
-  constructor(name: string, current: number, icon: string = "") {
+  constructor(name: string, current: number, icon: string = '') {
     this.name = name;
     this.current = current;
     this.icon = icon;
+    this.total = current;
   }
 }
 

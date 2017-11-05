@@ -4,29 +4,26 @@ import { Router } from '@angular/router';
 import { ClockService } from '../../services/clock.service';
 import { InventoryService, Resource } from '../../services/inventory.service';
 
-import { Message } from 'primeng/primeng';
-import { MessageService } from 'primeng/components/common/messageservice';
-
 @Component({
   selector: 'worker-panel',
   templateUrl: `./worker.component.html`
 })
 
 export class WorkerComponent implements OnInit {
-  currency : Resource
+  currency: Resource;
   manager_cost: number;
-  workers: Resource
-  managers: Resource
+  workers: Resource;
+  managers: Resource;
 
 
   auto_workers_power: number;
   auto_workers_cost: number;
 
   tick() {
-    let auto = Math.floor((this.workers.current * this.auto_workers_power) + ((this.managers.current / 10) * this.workers.current));
+    const auto = Math.floor((this.workers.current * this.auto_workers_power) + ((this.managers.current / 10) * this.workers.current));
     this.inventory.IncrementResource('lightbulbs', auto);
   }
-  constructor(private clock: ClockService, private inventory: InventoryService, private messageService: MessageService) {
+  constructor(private clock: ClockService, private inventory: InventoryService) {
     this.auto_workers_power = 1;
     this.auto_workers_cost = 50;
 
@@ -44,19 +41,15 @@ export class WorkerComponent implements OnInit {
     if (this.inventory.Purchase('currency', this.auto_workers_cost)) {
       this.inventory.IncrementResource("worker", 1);
       this.auto_workers_cost = Math.floor(this.auto_workers_cost * 1.1);
-      this.messageService.add({ severity: 'success', summary: 'Worker Hired' });
       return;
     }
-    this.messageService.add({ severity: 'error', summary: 'Not enough funds' });    
   }
 
   IncrementManager() {
     if (this.inventory.Purchase('currency', this.manager_cost)) {
       this.inventory.IncrementResource("manager", 1);
       this.manager_cost = Math.floor(this.manager_cost * 1.1);
-      this.messageService.add({ severity: 'success', summary: 'manager Hired' });
-      return;      
+      return;
     }
-    this.messageService.add({ severity: 'error', summary: 'Not enough funds' });    
   }
 }

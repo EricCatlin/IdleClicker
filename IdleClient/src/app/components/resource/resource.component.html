@@ -1,20 +1,10 @@
 <p-panel header="Resource" [toggleable]="true">
-
-    <button pButton type="button" (click)="Increment(1)" label="Click">
-    </button>
-
-    <inventory-panel [resource]="resource"></inventory-panel>
-
-
-    <worker-panel></worker-panel>
-
-
-
-
-    <upgrade-panel [upgrade_list]="upgrade_list" [owned_upgrades]="owned_upgrades"></upgrade-panel>
-
-
-    <chart-panel [resource]="resource"></chart-panel>
-
-
+    <div class="ui-g">
+        <button pButton class="ui-g-3" type="button" (click)="Increment(1)" label="Click">
+        </button>
+        <inventory-panel class="ui-g-8" [resource]="resource"></inventory-panel>
+    </div>
+    <inventory-panel  [resource]="inventory.resources['currency']"></inventory-panel>
+    <worker-panel *ngIf="upgrades.owned_upgrades['LIGHTBULBWORKERS']" ></worker-panel>
+    <upgrade-panel *ngIf="upgrades.owned_upgrades['100LIGHTBULBS']" [upgrade_list]="upgrade_list"></upgrade-panel>
 </p-panel>

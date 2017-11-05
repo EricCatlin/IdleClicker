@@ -1,26 +1,10 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-
-import { ClockService } from './clock.service'
-import { InventoryService, Resource } from './inventory.service'
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UpgradesService {
-  upgrades: Upgrade[];
-  owned: Object;
-
-  Unlock(upgrade: Upgrade): boolean {
-    if (this.inventory.Purchase(upgrade.cost_resource_key, upgrade.cost)){
-      upgrade.owned = true;
-      this.owned[upgrade.id] = true;
-    
-    }
-    return this.owned[upgrade.id];
-  }
-
-  constructor(private clock: ClockService, private inventory: InventoryService) {
-    this.upgrades = [];
-    this.upgrades.push(new Upgrade('HLVCOOL', 'Half-Cooldowns', 'Halves the cook', 100, 'currency'));
+  owned_upgrades: Object;
+  constructor(){
+    this.owned_upgrades = {};
   }
 }
 
@@ -52,13 +36,11 @@ export class Upgrade implements IUpgrade {
   }
 }
 export interface IUpgradable {
-  owned_upgrades: Object;
   upgrade_list: Upgrade[];
   UpgradeCallback: Function;
 }
 
 export interface IUpgrades {
-  owned_upgrades: Object;
   upgrade_list: Upgrade[];
   offered_upgrades: Upgrade[];
   AddUpgrade(offer: Upgrade);

@@ -1,16 +1,14 @@
 <p-panel header="Employees" [toggleable]="true">
     <div class='ui-g'>
-        <p-panel header="Worker" [toggleable]="true" class="ui-g-6">
+        <div class='ui-g-6'>
             <button pButton type="button" [disabled]="auto_workers_cost > currency.current" (click)="IncrementWorker(1)" label="Buy Worker ({{auto_workers_cost}})">
             </button>
-            <div>Current: {{workers.current}}</div>
-        </p-panel>
-   
-
-        <p-panel header="Manager" [toggleable]="true" class="ui-g-6">
+            {{workers.current}}
+        </div>
+        <div class='ui-g-6'>
             <button pButton type="button" [disabled]="manager_cost > currency.current" (click)="IncrementManager(1)" label="Buy Manager ({{manager_cost}})">
             </button>
-            <div>Current: {{managers.current}}</div>
-        </p-panel>
+            {{managers.current}}
+        </div>
     </div>
 </p-panel>

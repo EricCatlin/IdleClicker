@@ -2,25 +2,23 @@ import { Component, Input, OnInit } from '@angular/core';
 import { InventoryService, Resource } from '../../services/inventory.service';
 import { ClockService } from '../../services/clock.service';
 import { CurrencyPipe } from '@angular/common';
-import { Upgrade, IUpgradable } from '../../services/upgrades.service';
+import { UpgradesService, Upgrade, IUpgradable } from '../../services/upgrades.service';
 import { Upgrades } from './upgrades';
 
 @Component({
   selector: 'market-panel',
   templateUrl: `./market.component.html`
 })
-export class MarketComponent implements OnInit, IUpgradable{
-  owned_upgrades: Object;
+export class MarketComponent implements OnInit, IUpgradable {
   upgrade_list: Upgrade[];
-  constructor(private inventory: InventoryService, private clock: ClockService) {
+  constructor(private inventory: InventoryService, private clock: ClockService, private upgrades: UpgradesService) {
     clock.Tick_CheckIn(this);
     this.upgrade_list = Upgrades;
-    this.owned_upgrades = {};
   }
 
   specials: Special[] = [];
   offers: Offer[] = [];
-  
+
   ngOnInit() {
     this.specials.push(new Special('currency', 'lightbulbs', 100, 1000, 10000));
     this.offers.push(new Offer('currency', 'lightbulbs', 1, 10, 1));
@@ -36,8 +34,8 @@ export class MarketComponent implements OnInit, IUpgradable{
 
     }
   }
-  UpgradeCallback(upgrade: Upgrade){
-    if(upgrade.id == "CONTRACT1"){
+  UpgradeCallback(upgrade: Upgrade) {
+    if (upgrade.id == "CONTRACT1") {
       this.offers.push(new Offer('currency', 'lightbulbs', 100, 500, 1));
     }
   }
@@ -52,13 +50,15 @@ export class MarketComponent implements OnInit, IUpgradable{
   RejectSpecial(offer: Offer) {
     this.specials.splice(this.specials.indexOf(offer), 1);
   }
-  CalculateCooldown() : number{
+  CalculateCooldown(): number {
     let cooldown = 1;
-    if(this.owned_upgrades["DBLCOOL"]) {cooldown*=2}
+    if (this.upgrades.owned_upgrades['DBLCOOL']) { cooldown *= 2; }
+    if (this.upgrades.owned_upgrades['TRPLCOOL']) { cooldown *= 3; }
+
     return cooldown;
   }
   tick() {
-    
+
     this.specials.forEach((offer) => {
       if (offer.expires-- <= 0) {
         this.specials.splice(this.specials.indexOf(offer), 1);
@@ -67,13 +67,13 @@ export class MarketComponent implements OnInit, IUpgradable{
     this.offers.forEach((offer) => {
       if (offer.cooldown > 0) {
         offer.cooldown -= this.CalculateCooldown();
-        offer.progress = Math.floor(((offer._cooldown-offer.cooldown)/offer._cooldown)*100)
-      }else{
+        offer.progress = Math.floor(((offer._cooldown - offer.cooldown) / offer._cooldown) * 100)
+      } else {
         offer.progress = 0;
       }
     });
 
-    if (Math.random() < (1 / ((this.specials.length + 1)  * 100))) {
+    if (Math.random() < (1 / ((this.specials.length + 1) * 100))) {
       const offer = new Offer('currency', 'lightbulbs', getRndInteger(10, 500), getRndInteger(100, 5000), getRndInteger(35, 400));
       this.specials.push(offer);
     }
@@ -85,7 +85,7 @@ function getRndInteger(min, max) {
 
 
 
-export interface IOffer{
+export interface IOffer {
   selling: string;
   buying: string;
   cost: number;
@@ -95,9 +95,9 @@ export interface IOffer{
   amount: number;
   cost_per: number;
   id: string;
-  progress:number;
+  progress: number;
 }
-class Offer implements IOffer{
+class Offer implements IOffer {
   selling: string;
   buying: string;
   cost: number;
@@ -107,7 +107,7 @@ class Offer implements IOffer{
   amount: number;
   cost_per: number;
   id: string;
-  progress:number;
+  progress: number;
   constructor(selling: string, buying: string, cost: number, amount: number, cooldown: number = 10, expires: number = 100) {
     this.selling = selling;
     this.buying = buying;
@@ -121,7 +121,7 @@ class Offer implements IOffer{
   }
 }
 
-class Special implements IOffer{
+class Special implements IOffer {
   selling: string;
   buying: string;
   cost: number;
@@ -131,7 +131,7 @@ class Special implements IOffer{
   amount: number;
   cost_per: number;
   id: string;
-  progress:number;
+  progress: number;
   constructor(selling: string, buying: string, cost: number, amount: number, expires: number = 100) {
     this.selling = selling;
     this.buying = buying;
