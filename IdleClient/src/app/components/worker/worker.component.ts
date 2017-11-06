@@ -26,20 +26,19 @@ export class WorkerComponent implements OnInit {
   constructor(private clock: ClockService, private inventory: InventoryService) {
     this.auto_workers_power = 1;
     this.auto_workers_cost = 50;
-
     this.manager_cost = 100;
   }
+
   ngOnInit(): void {
     this.clock.Tick_CheckIn(this);
-
     this.workers = this.inventory.resources['worker'];
     this.managers = this.inventory.resources['manager'];
-    this.currency = this.inventory.resources['currency']; 
-
+    this.currency = this.inventory.resources['currency'];
   }
+
   IncrementWorker() {
     if (this.inventory.Purchase('currency', this.auto_workers_cost)) {
-      this.inventory.IncrementResource("worker", 1);
+      this.inventory.IncrementResource('worker', 1);
       this.auto_workers_cost = Math.floor(this.auto_workers_cost * 1.1);
       return;
     }
@@ -47,7 +46,7 @@ export class WorkerComponent implements OnInit {
 
   IncrementManager() {
     if (this.inventory.Purchase('currency', this.manager_cost)) {
-      this.inventory.IncrementResource("manager", 1);
+      this.inventory.IncrementResource('manager', 1);
       this.manager_cost = Math.floor(this.manager_cost * 1.1);
       return;
     }

@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Resource } from '../../services/inventory.service'
-import { Observable } from 'rxjs/Rx';
+import { Resource } from '../../services/inventory.service';
 
 @Component({
   selector: 'inventory-panel',
@@ -10,16 +9,6 @@ import { Observable } from 'rxjs/Rx';
 })
 
 
-export class InventoryComponent implements OnInit {
+export class InventoryComponent {
   @Input() resource: Resource;
-
-  constructor() {
-
-  }
-
-
-
-  ngOnInit(){
-
-  }
 }

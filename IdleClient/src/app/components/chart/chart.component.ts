@@ -1,15 +1,13 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { ClockService } from '../../services/clock.service'
-import { InventoryService, Resource } from '../../services/inventory.service'
+import { Component, ViewChild, Input } from '@angular/core';
+import { ClockService } from '../../services/clock.service';
+import { InventoryService, Resource } from '../../services/inventory.service';
 import { UIChart } from 'primeng/primeng';
-
-
 
 @Component({
     selector: 'chart-panel',
     templateUrl: './chart.component.html',
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent {
     @Input() resource: Resource;
     @ViewChild('chart') chart: UIChart;
     options = {
@@ -29,7 +27,7 @@ export class ChartComponent implements OnInit {
             }],
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero: true
                 }
             }]
         },
@@ -52,15 +50,10 @@ export class ChartComponent implements OnInit {
     };
     tick() {
         this.data.datasets[0].data.push(this.resource.current);
-        if (this.data.datasets[0].data.length > 200) this.data.datasets[0].data.splice(0, 1);
+        if ( this.data.datasets[0].data.length > 200 ) { this.data.datasets[0].data.splice(0, 1); }
         this.chart.refresh();
     }
     constructor(private clock: ClockService, private inventory: InventoryService) {
         clock.Tick_CheckIn(this);
     }
-
-
-    ngOnInit(): void {
-    }
-
 }

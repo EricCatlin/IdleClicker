@@ -12,13 +12,12 @@ import { EventEmitter } from 'events';
   templateUrl: `./upgrades.component.html`
 })
 
-export class UpgradeComponent implements OnInit, IUpgrades {
+export class UpgradeComponent implements IUpgrades {
   @Input() upgrade_list: Upgrade[];
   @Input() callback: IUpgradable;
   owned_upgrade_array: Upgrade[];
   offered_upgrades: Upgrade[];
-  ngOnInit(): void {
-  }
+
   AddUpgrade(upgrade: Upgrade) {
     if (this.inventory.Purchase(upgrade.cost_resource_key, upgrade.cost)) {
       this.upgrades.owned_upgrades[upgrade.id] = true;
@@ -28,6 +27,7 @@ export class UpgradeComponent implements OnInit, IUpgrades {
 
     }
   }
+
   constructor(private inventory: InventoryService, private upgrades: UpgradesService) {
     this.owned_upgrade_array = [];
   }

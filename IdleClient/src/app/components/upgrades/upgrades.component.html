@@ -12,8 +12,8 @@
             </div>
         </p-panel>
         <p-panel header="Purchased" [toggleable]="true" class='ui-g-6' *ngIf='owned_upgrade_array.length>0'>
-            <div *ngFor="let item of owned_upgrade_array">
-                <div>{{item.name}}</div>
+            <div *ngFor="let item of owned_upgrade_array" class="ui-g-1 bg-grey-500">
+                <br/>
             </div>
         </p-panel>
     </div>

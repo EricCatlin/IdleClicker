@@ -20,11 +20,7 @@ export class MarketComponent implements OnInit, IUpgradable {
   offers: Offer[] = [];
 
   ngOnInit() {
-    this.specials.push(new Special('currency', 'lightbulbs', 100, 1000, 10000));
-    this.offers.push(new Offer('currency', 'lightbulbs', 1, 10, 1));
-    this.offers.push(new Offer('currency', 'lightbulbs', 10, 90, 10));
-    this.offers.push(new Offer('currency', 'lightbulbs', 100, 800, 100));
-    this.offers.push(new Offer('currency', 'lightbulbs', 1000, 6000, 200));
+    this.specials.push(new Special('currency', 'lightbulbs', 100, 100, 10));
   }
   AcceptSpecial(offer: Offer) {
     if (this.inventory.Purchase(offer.buying, offer.amount)) {
@@ -34,8 +30,21 @@ export class MarketComponent implements OnInit, IUpgradable {
 
     }
   }
+
   UpgradeCallback(upgrade: Upgrade) {
-    if (upgrade.id == "CONTRACT1") {
+    if (upgrade.id === 'tutorial_offer_1') {
+      this.offers.push(new Offer('currency', 'lightbulbs', 1, 1, 0));
+    }
+    if (upgrade.id === 'tutorial_offer_2') {
+      this.offers.push(new Offer('currency', 'lightbulbs', 10, 10, 1));
+    }
+    if (upgrade.id === 'tutorial_offer_3') {
+      this.offers.push(new Offer('currency', 'lightbulbs', 100, 100, 10));
+    }
+    if (upgrade.id === 'tutorial_offer_4') {
+      this.offers.push(new Offer('currency', 'lightbulbs', 1000, 1000, 100));
+    }
+    if (upgrade.id === 'CONTRACT1') {
       this.offers.push(new Offer('currency', 'lightbulbs', 100, 500, 1));
     }
   }
@@ -57,8 +66,8 @@ export class MarketComponent implements OnInit, IUpgradable {
 
     return cooldown;
   }
-  tick() {
 
+  tick() {
     this.specials.forEach((offer) => {
       if (offer.expires-- <= 0) {
         this.specials.splice(this.specials.indexOf(offer), 1);
@@ -67,7 +76,7 @@ export class MarketComponent implements OnInit, IUpgradable {
     this.offers.forEach((offer) => {
       if (offer.cooldown > 0) {
         offer.cooldown -= this.CalculateCooldown();
-        offer.progress = Math.floor(((offer._cooldown - offer.cooldown) / offer._cooldown) * 100)
+        offer.progress = Math.floor(((offer._cooldown - offer.cooldown) / offer._cooldown) * 100);
       } else {
         offer.progress = 0;
       }

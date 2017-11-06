@@ -4,17 +4,18 @@ import { Observable } from 'rxjs/Rx';
 import { ClockService } from './clock.service'
 @Injectable()
 export class InventoryService {
+  resources: {};
 
   IncrementResource(name: string, amount: number) {
-    let resource = this.resources[name];
-    if (!resource) { console.error("Resource not found"); return; }
+    const resource = this.resources[name];
+    if (!resource) { console.error('Resource not found'); return; }
     resource.current += amount;
     resource.total += amount;
   }
 
   Purchase(name: string, amount: number): boolean {
-    let resource = this.resources[name];
-    if (!resource) { console.error("Resource not found"); return; }
+    const resource = this.resources[name];
+    if (!resource) { console.error('Resource not found'); return; }
     if (resource.current >= amount) {
       resource.current -= amount;
       return true;
@@ -23,21 +24,18 @@ export class InventoryService {
     }
   }
 
-
-  resources: {};
-
-
   tick() {
     Object.keys(this.resources).forEach(key => {
       this.tick_resource(this.resources[key]);
     });
   }
+
   constructor(private clock: ClockService) {
     this.resources = {};
-    this.resources["currency"] = new Resource("currency", 90);
-    this.resources["lightbulbs"] = new Resource("lightbulbs", 0, "fa fa-lightbulb");
-    this.resources["worker"] = new Resource("worker", 0);
-    this.resources["manager"] = new Resource("manager", 0);
+    this.resources['currency'] = new Resource('currency', 90);
+    this.resources['lightbulbs'] = new Resource('lightbulbs', 0, 'fa fa-lightbulb');
+    this.resources['worker'] = new Resource('worker', 0);
+    this.resources['manager'] = new Resource('manager', 0);
 
 
     clock.Tick_CheckIn(this);
