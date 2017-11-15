@@ -2,14 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { InventoryService, Resource } from '../../services/inventory.service';
 import { ClockService } from '../../services/clock.service';
 import { CurrencyPipe } from '@angular/common';
-import { UpgradesService, Upgrade, IUpgradable } from '../../services/upgrades.service';
+import { UpgradesService, Upgrade } from '../../services/upgrades.service';
 import { Upgrades } from './upgrades';
 
 @Component({
   selector: 'market-panel',
   templateUrl: `./market.component.html`
 })
-export class MarketComponent implements OnInit, IUpgradable {
+export class MarketComponent implements OnInit {
   upgrade_list: Upgrade[];
   constructor(private inventory: InventoryService, private clock: ClockService, private upgrades: UpgradesService) {
     clock.Tick_CheckIn(this);

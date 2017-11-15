@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InventoryService, Resource } from '../../services/inventory.service';
-import { UpgradesService, Upgrade, IUpgradable, IUpgrades } from '../../services/upgrades.service';
+import { UpgradesService, Upgrade, IUpgrades } from '../../services/upgrades.service';
 
 import { ClockService } from '../../services/clock.service';
 import { CurrencyPipe } from '@angular/common';
@@ -14,7 +14,7 @@ import { EventEmitter } from 'events';
 
 export class UpgradeComponent implements IUpgrades {
   @Input() upgrade_list: Upgrade[];
-  @Input() callback: IUpgradable;
+  @Input() callback;
   owned_upgrade_array: Upgrade[];
   offered_upgrades: Upgrade[];
 

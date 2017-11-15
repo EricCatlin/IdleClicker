@@ -31,10 +31,6 @@ export class Upgrade implements IUpgrade {
     this.cost_resource_key = cost_resource_key;
   }
 }
-export interface IUpgradable {
-  upgrade_list: Upgrade[];
-  UpgradeCallback: Function;
-}
 
 export interface IUpgrades {
   upgrade_list: Upgrade[];

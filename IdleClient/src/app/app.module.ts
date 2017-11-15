@@ -16,7 +16,7 @@ import { GameComponent } from './components/game/game.component';
 import { ResourceComponent } from './components/resource/resource.component';
 
 
-import { WorkerComponent } from './components/worker/worker.component';
+import { WorkerComponent } from './components/worker/worker';
 
 import { TimeComponent } from './components/time/time.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
@@ -36,6 +36,16 @@ import { ToolbarModule } from 'primeng/primeng';
 import { ChartModule } from 'primeng/primeng';
 import { PanelModule } from 'primeng/primeng';
 import {ProgressBarModule} from 'primeng/primeng';
+
+
+
+
+//Angular Material stuff
+import {MatButtonModule, MatCheckboxModule, MatButton} from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 
 @NgModule({
   declarations: [
@@ -61,6 +71,11 @@ import {ProgressBarModule} from 'primeng/primeng';
     ChartModule,
     PanelModule,
     ProgressBarModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatExpansionModule
+
   ],
   providers: [ClockService, InventoryService, UpgradesService],
   bootstrap: [AppComponent]

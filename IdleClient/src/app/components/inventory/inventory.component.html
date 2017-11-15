@@ -1,3 +1,17 @@
-<p-panel header="{{resource.name}}: {{resource.current}} : {{resource.delta}}/s" [toggleable]="true" [collapsed]="true">
+
+
+
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{resource.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{resource.current}} : {{resource.delta}}/s
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  
     <chart-panel [resource]="resource"></chart-panel>
-</p-panel>
+  
+  </mat-expansion-panel>

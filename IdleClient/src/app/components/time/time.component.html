@@ -1,20 +1,24 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
 
-<p-toolbar >
-    <div class="ui-toolbar-group-left">
-        <button pButton type="button" label="Play" icon="fa-play" [class.ui-button-success]="clock_running"  (click)="StartClock()"></button>
-        <button pButton type="button" label="Pause" icon="fa-pause" (click)="StopClock()"></button>
-            
-        <i class="fa fa-cog" [class.fa-spin]="clock_running"></i>
-        
-    </div>
+    <div class='container'>
+        <p-toolbar>
+            <div class="ui-toolbar-group-left">
+                <button pButton type="button" label="Play" icon="fa-play" [class.ui-button-success]="clock_running" (click)="StartClock()"></button>
+                <button pButton type="button" label="Pause" icon="fa-pause" (click)="StopClock()"></button>
 
- 
-        
-    
-    <div class="ui-toolbar-group-right">
-        <i class="fa fa-bars"></i>
-        <button pButton type="button" label="1X" icon="fa-play" [ngClass]="{'ui-button-warning':tick_delay==1}" (click)="StartClock(1)"></button>
-        <button pButton type="button" label="10X" icon="fa-forward"  [ngClass]="{'ui-button-warning':tick_delay==10}" (click)="StartClock(10)"></button>
-        <button pButton type="button" label="100X" icon="fa-fast-forward"  [ngClass]="{'ui-button-warning':tick_delay==100}" (click)="StartClock(100)"></button>
+                <i class="fa fa-cog" [class.fa-spin]="clock_running"></i>
+
+            </div>
+
+
+
+
+            <div class="ui-toolbar-group-right">
+                <i class="fa fa-bars"></i>
+                <button pButton type="button" label="1X" icon="fa-play" [ngClass]="{'ui-button-warning':tick_delay==1}" (click)="StartClock(1)"></button>
+                <button pButton type="button" label="10X" icon="fa-forward" [ngClass]="{'ui-button-warning':tick_delay==10}" (click)="StartClock(10)"></button>
+                <button pButton type="button" label="100X" icon="fa-fast-forward" [ngClass]="{'ui-button-warning':tick_delay==100}" (click)="StartClock(100)"></button>
+            </div>
+        </p-toolbar>
     </div>
-</p-toolbar>
+</nav>

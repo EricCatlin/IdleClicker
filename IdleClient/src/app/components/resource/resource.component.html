@@ -1,10 +1,26 @@
-<p-panel header="Resource" [toggleable]="true">
+
+
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Resources
+      </mat-panel-title>
+      <mat-panel-description>
+        This is a summary of the content
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  
     <div class="ui-g">
-        <button pButton class="ui-g-3" type="button" (click)="Increment(1)" label="Click">
-        </button>
-        <inventory-panel class="ui-g-8" [resource]="resource"></inventory-panel>
+        <inventory-panel [resource]="resource"></inventory-panel>
+            <button pButton  type="button" (click)="Increment(1)" label="Click">
+            </button>
     </div>
     <inventory-panel  [resource]="inventory.resources['currency']"></inventory-panel>
     <worker-panel *ngIf="upgrades.owned_upgrades['LIGHTBULBWORKERS']" ></worker-panel>
     <upgrade-panel *ngIf="upgrades.owned_upgrades['100LIGHTBULBS']" [upgrade_list]="upgrade_list"></upgrade-panel>
-</p-panel>
+  
+  </mat-expansion-panel>
+
+
+

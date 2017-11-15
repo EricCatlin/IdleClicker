@@ -1,8 +1,5 @@
-<h1>Angular Profiler</h1>
-<time-panel class='ui-g-12 ui-g-nopad'></time-panel>
-<div class='ui-g-nopad ui-g-12 ui-lg-8'>
-    <resource-panel [resource]='inventory.resources["lightbulbs"]'></resource-panel>
-</div>
-<div class='ui-g-nopad ui-g-12 ui-lg-4'>
-    <market-panel *ngIf="upgrades.owned_upgrades['10LIGHTBULBS']" class='ui-g-12'></market-panel>
-</div>
+<time-panel></time-panel>
+
+<resource-panel [resource]='inventory.resources["lightbulbs"]'></resource-panel>
+
+<market-panel *ngIf="upgrades.owned_upgrades['10LIGHTBULBS']"></market-panel>

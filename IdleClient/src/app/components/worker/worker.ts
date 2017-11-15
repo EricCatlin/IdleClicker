@@ -6,7 +6,7 @@ import { InventoryService, Resource } from '../../services/inventory.service';
 
 @Component({
   selector: 'worker-panel',
-  templateUrl: `./worker.component.html`
+  templateUrl: `./worker.html`
 })
 
 export class WorkerComponent implements OnInit {
