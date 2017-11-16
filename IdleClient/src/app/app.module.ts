@@ -31,7 +31,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 // PrimeNG Stuff
-import { ButtonModule } from 'primeng/primeng';
 import { ToolbarModule } from 'primeng/primeng';
 import { ChartModule } from 'primeng/primeng';
 import { PanelModule } from 'primeng/primeng';
@@ -67,7 +66,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
     AppRoutingModule,
     HttpModule,
     ToolbarModule,
-    ButtonModule,
     ChartModule,
     PanelModule,
     ProgressBarModule,

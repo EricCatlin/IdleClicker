@@ -3,8 +3,8 @@
     <div class='container'>
         <p-toolbar>
             <div class="ui-toolbar-group-left">
-                <button pButton type="button" label="Play" icon="fa-play" [class.ui-button-success]="clock_running" (click)="StartClock()"></button>
-                <button pButton type="button" label="Pause" icon="fa-pause" (click)="StopClock()"></button>
+                <button mat-raised-button type="button"  icon="fa-play" [class.ui-button-success]="clock_running" (click)="StartClock()">Play</button>
+                <button mat-raised-button type="button"  icon="fa-pause" (click)="StopClock()">Pause</button>
 
                 <i class="fa fa-cog" [class.fa-spin]="clock_running"></i>
 
@@ -15,9 +15,9 @@
 
             <div class="ui-toolbar-group-right">
                 <i class="fa fa-bars"></i>
-                <button pButton type="button" label="1X" icon="fa-play" [ngClass]="{'ui-button-warning':tick_delay==1}" (click)="StartClock(1)"></button>
-                <button pButton type="button" label="10X" icon="fa-forward" [ngClass]="{'ui-button-warning':tick_delay==10}" (click)="StartClock(10)"></button>
-                <button pButton type="button" label="100X" icon="fa-fast-forward" [ngClass]="{'ui-button-warning':tick_delay==100}" (click)="StartClock(100)"></button>
+                <button mat-raised-button type="button"  icon="fa-play" [ngClass]="{'ui-button-warning':tick_delay==1}" (click)="StartClock(1)">1x</button>
+                <button mat-raised-button type="button"  icon="fa-forward" [ngClass]="{'ui-button-warning':tick_delay==10}" (click)="StartClock(10)">10x</button>
+                <button mat-raised-button type="button"  icon="fa-fast-forward" [ngClass]="{'ui-button-warning':tick_delay==100}" (click)="StartClock(100)">100x</button>
             </div>
         </p-toolbar>
     </div>

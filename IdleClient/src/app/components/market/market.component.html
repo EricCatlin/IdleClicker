@@ -29,8 +29,8 @@
                 </div>
 
                 <div class='ui-g-3'>
-                    <button label="{{offer.cost}}" *ngIf="offer.cooldown <= 0" [disabled]="offer.amount > inventory.resources[offer.buying].current"
-                        pButton type="button" icon="fa-check" (click)="Accept(offer)"></button>
+                    <button  *ngIf="offer.cooldown <= 0" [disabled]="offer.amount > inventory.resources[offer.buying].current"
+                        mat-raised-button type="button" icon="fa-check" (click)="Accept(offer)">{{offer.cost}}</button>
                     <p-progressBar *ngIf="offer._cooldown > 1 && offer.cooldown > 0" [value]="offer.progress"></p-progressBar>
                 </div>
             </div>
@@ -59,8 +59,8 @@
                         </div>
         
                         <div class='ui-g-3'>
-                            <button label="{{offer.cost}}" [disabled]="offer.amount > inventory.resources[offer.buying].current" pButton type="button"
-                                icon="fa-check" (click)="Accept(offer)"></button>
+                            <button  [disabled]="offer.amount > inventory.resources[offer.buying].current" mat-raised-button type="button"
+                                icon="fa-check" (click)="Accept(offer)">{{offer.cost}}</button>
                         </div>
                     </div>
     

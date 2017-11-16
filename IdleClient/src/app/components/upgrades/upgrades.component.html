@@ -6,8 +6,8 @@
                     <div></div>
                 </div>
                 <div class='ui-g'>
-                    <button [disabled]='offer.cost > inventory.resources[offer.cost_resource_key].current' label="{{offer.name}} ({{offer.cost}} {{offer.cost_resource_key}})"
-                        pButton type="button" (click)="AddUpgrade(offer)"></button>
+                    <button [disabled]='offer.cost > inventory.resources[offer.cost_resource_key].current'
+                        mat-raised-button type="button" (click)="AddUpgrade(offer)">{{offer.name}} ({{offer.cost}} {{offer.cost_resource_key}})</button>
                 </div>
             </div>
         </p-panel>
