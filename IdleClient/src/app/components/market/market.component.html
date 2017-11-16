@@ -3,72 +3,58 @@
         <mat-panel-title>
             Market
         </mat-panel-title>
-        <mat-panel-description>
-        </mat-panel-description>
+
     </mat-expansion-panel-header>
 
 
 
 
-    <div class='row'>
-        <mat-expansion-panel class='col-xs-6'>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Offers
-                </mat-panel-title>
-                <mat-panel-description>
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div *ngFor="let offer of offers" class='ui-g'>
-                <div class='ui-g-1'>
-                    <i class='fa fa-exchange'></i>
-                </div>
-                <div class='ui-g-8'>
-                    <div>{{offer.cost}} {{offer.selling}}
-                        <br/> {{offer.amount}} {{offer.buying}}</div>
-                </div>
+    <mat-expansion-panel class='col-xs-6'>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Offers
+            </mat-panel-title>
 
-                <div class='ui-g-3'>
-                    <button  *ngIf="offer.cooldown <= 0" [disabled]="offer.amount > inventory.resources[offer.buying].current"
-                        mat-raised-button type="button" icon="fa-check" (click)="Accept(offer)">{{offer.cost}}</button>
-                    <p-progressBar *ngIf="offer._cooldown > 1 && offer.cooldown > 0" [value]="offer.progress"></p-progressBar>
-                </div>
+        </mat-expansion-panel-header>
+        <div *ngFor="let offer of offers">
+
+            <div class='col-xs-8'>
+                <div>{{offer.cost}} {{offer.selling}}
+                    <br/> {{offer.amount}} {{offer.buying}}</div>
             </div>
 
-        </mat-expansion-panel>
-    </div>
-
-
-
-    <div>
-            <mat-expansion-panel  class='col-xs-6'>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                            Specials
-                    </mat-panel-title>
-                    <mat-panel-description>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <div *ngFor="let offer of specials" class='ui-g'>
-                        <div class='ui-g-1'>
-                            <i class='fa fa-exchange'></i>
-                        </div>
-                        <div class='ui-g-8'>
-                            <div>{{offer.cost}} {{offer.selling}}
-                                <br/> {{offer.amount}} {{offer.buying}}</div>
-                        </div>
-        
-                        <div class='ui-g-3'>
-                            <button  [disabled]="offer.amount > inventory.resources[offer.buying].current" mat-raised-button type="button"
-                                icon="fa-check" (click)="Accept(offer)">{{offer.cost}}</button>
-                        </div>
-                    </div>
-    
-            </mat-expansion-panel>
+            <div class='col-xs-3'>
+                <button *ngIf="offer.cooldown <= 0" [disabled]="offer.amount > inventory.resources[offer.buying].current" mat-raised-button
+                    type="button" icon="fa-check" (click)="Accept(offer)">{{offer.cost}}</button>
+                <p-progressBar *ngIf="offer._cooldown > 1 && offer.cooldown > 0" [value]="offer.progress"></p-progressBar>
+            </div>
         </div>
 
+    </mat-expansion-panel>
+    <mat-expansion-panel class='col-xs-6'>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Specials
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <div *ngFor="let offer of specials">
+
+            <div class='col-xs-8'>
+                <div>{{offer.cost}} {{offer.selling}}
+                    <br/> {{offer.amount}} {{offer.buying}}</div>
+            </div>
+
+            <div class='col-xs-3'>
+                <button [disabled]="offer.amount > inventory.resources[offer.buying].current" mat-raised-button type="button" icon="fa-check"
+                    (click)="Accept(offer)">{{offer.cost}}</button>
+            </div>
+        </div>
+
+    </mat-expansion-panel>
 
 
-        <upgrade-panel *ngIf="upgrades.owned_upgrades['10LIGHTBULBS']" [upgrade_list]="upgrade_list" [callback]="this" class='ui-g-12'></upgrade-panel>
+
+
+    <upgrade-panel [upgrade_list]="upgrade_list" [callback]="this" class='col-xs-12'></upgrade-panel>
 </mat-expansion-panel>
-

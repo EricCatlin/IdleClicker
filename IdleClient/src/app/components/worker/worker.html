@@ -1,14 +1,18 @@
-<p-panel header="Employees" [toggleable]="true">
-    <div class='ui-g'>
-        <div class='ui-g-6'>
-            <button mat-raised-button type="button" [disabled]="auto_workers_cost > currency.current" (click)="IncrementWorker(1)" >Buy Worker ({{auto_workers_cost}})
-            </button>
-            {{workers.current}}
-        </div>
-        <div class='ui-g-6'>
-            <button mat-raised-button type="button" [disabled]="manager_cost > currency.current" (click)="IncrementManager(1)" >Buy Manager ({{manager_cost}})
-            </button>
-            {{managers.current}}
-        </div>
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Employees
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class='col-xs-6'>
+        <button mat-raised-button type="button" [disabled]="auto_workers_cost > currency.current" (click)="IncrementWorker(1)">Buy Worker ({{auto_workers_cost}})
+        </button>
+        {{workers.current}}
     </div>
-</p-panel>
+    <div class='col-xs-6'>
+        <button mat-raised-button type="button" [disabled]="manager_cost > currency.current" (click)="IncrementManager(1)">Buy Manager ({{manager_cost}})
+        </button>
+        {{managers.current}}
+    </div>
+</mat-expansion-panel>

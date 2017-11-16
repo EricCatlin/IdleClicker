@@ -18,7 +18,7 @@ export class ResourceComponent {
     this.upgrade_list = Upgrades;
   }
 
-  Increment(y) { this.inventory.IncrementResource(this.resource.name, this.ClickerUpgradePowers((y))); this.AnalyzeClick(); }
+  Increment(y) { this.inventory.IncrementResource('lightbulbs', this.ClickerUpgradePowers((y))); this.AnalyzeClick(); }
 
   AnalyzeClick() {
     if ( !this.upgrades.owned_upgrades['10LIGHTBULBS'] && this.inventory.resources['lightbulbs'].total > 10) {

@@ -1,6 +1,30 @@
 <time-panel></time-panel>
-<div class='container'>
-<resource-panel [resource]='inventory.resources["lightbulbs"]'></resource-panel>
+<div class='container bg-grey-300'>
+    <div class='col-xs-4'>
+        <button mat-icon-button *ngIf="cost > 0" class='bg-grey-400' (click)="cost = cost - 0.01">
+            -
+        </button>
+        cost: {{cost | number:'1.0-2'}}
+        <button mat-icon-button class='bg-grey-400' (click)="cost = cost + 0.01">
+            +
+        </button>
+    </div>
 
-<market-panel *ngIf="upgrades.owned_upgrades['10LIGHTBULBS']"></market-panel>
+    <div class='col-xs-4'>
+            <button mat-icon-button *ngIf="marketing > 0" class='bg-grey-400' (click)="marketing = marketing - 0.01">
+                -
+            </button>
+            marketing: {{marketing | number:'1.0-2'}}
+            <button mat-icon-button class='bg-grey-400' (click)="marketing = marketing + 0.01">
+                +
+            </button>
+        </div>
+
+    <div class='col-xs-4'>
+
+        demand: {{demand | number:'1.0-2'}}
+
+    </div>
 </div>
+<resource-panel></resource-panel>
+<market-panel></market-panel>

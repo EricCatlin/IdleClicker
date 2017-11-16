@@ -1,24 +1,16 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-
-    <div class='container'>
-        <p-toolbar>
-            <div class="ui-toolbar-group-left">
-                <button mat-raised-button type="button"  icon="fa-play" [class.ui-button-success]="clock_running" (click)="StartClock()">Play</button>
-                <button mat-raised-button type="button"  icon="fa-pause" (click)="StopClock()">Pause</button>
-
-                <i class="fa fa-cog" [class.fa-spin]="clock_running"></i>
-
-            </div>
-
-
-
-
-            <div class="ui-toolbar-group-right">
-                <i class="fa fa-bars"></i>
-                <button mat-raised-button type="button"  icon="fa-play" [ngClass]="{'ui-button-warning':tick_delay==1}" (click)="StartClock(1)">1x</button>
-                <button mat-raised-button type="button"  icon="fa-forward" [ngClass]="{'ui-button-warning':tick_delay==10}" (click)="StartClock(10)">10x</button>
-                <button mat-raised-button type="button"  icon="fa-fast-forward" [ngClass]="{'ui-button-warning':tick_delay==100}" (click)="StartClock(100)">100x</button>
-            </div>
-        </p-toolbar>
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Time
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class='pull-left'>
+        <button mat-raised-button [class.bg-green-800]="clock_running" (click)="StartClock()">Play</button>
+        <button mat-raised-button [class.bg-red-800]="!clock_running" (click)="StopClock()">Pause</button>
     </div>
-</nav>
+    <div class='pull-right'>
+        <button mat-raised-button [class.bg-orange-800]="tick_delay==1" (click)="StartClock(1)">1x</button>
+        <button mat-raised-button [class.bg-orange-800]="tick_delay==10" (click)="StartClock(10)">10x</button>
+        <button mat-raised-button [class.bg-orange-800]="tick_delay==100" (click)="StartClock(100)">100x</button>
+    </div>
+</mat-expansion-panel>

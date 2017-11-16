@@ -6,16 +6,20 @@
   </mat-expansion-panel-header>
   <div>
     <div class='col-xs-12 col-md-3'>
-      <button mat-raised-button class='col-xs-12' (click)="Increment(1)">+1 Lightbulb
+      <button mat-raised-button class='col-xs-12 bg-green-500' (click)="Increment(1)">+1 Lightbulb
       </button>
       <br/>
     </div>
-    
+
     <div class='col-xs-12 col-md-9'>
-      <inventory-panel class='col-xs-12 col-md-6' [resource]="resource"></inventory-panel>
+      <inventory-panel class='col-xs-12 col-md-6' [resource]="inventory.resources['lightbulbs']"></inventory-panel>
+      <inventory-panel class='col-xs-12 col-md-6' [resource]="inventory.resources['glass']"></inventory-panel>
+      <inventory-panel class='col-xs-12 col-md-6' [resource]="inventory.resources['wire']"></inventory-panel>
+      
+      
       <inventory-panel class='col-xs-12 col-md-6' [resource]="inventory.resources['currency']"></inventory-panel>
     </div>
-    <worker-panel *ngIf="upgrades.owned_upgrades['LIGHTBULBWORKERS']"></worker-panel>
-    <upgrade-panel *ngIf="upgrades.owned_upgrades['100LIGHTBULBS']" [upgrade_list]="upgrade_list"></upgrade-panel>
+    <worker-panel></worker-panel>
+    <upgrade-panel [upgrade_list]="upgrade_list"></upgrade-panel>
   </div>
 </mat-expansion-panel>

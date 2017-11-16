@@ -1,17 +1,13 @@
+<mat-expansion-panel *ngIf="resource">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{resource.name}}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{resource.current| number:'1.0-2'}} : {{resource.rolling_average | number:'1.0-2'}}/s
+    </mat-panel-description>
+  </mat-expansion-panel-header>
 
+  <chart-panel [resource]="resource"></chart-panel>
 
-
-
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{resource.name}}
-      </mat-panel-title>
-      <mat-panel-description>
-        {{resource.current}} : {{resource.delta}}/s
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-  
-    <chart-panel [resource]="resource"></chart-panel>
-  
-  </mat-expansion-panel>
+</mat-expansion-panel>
