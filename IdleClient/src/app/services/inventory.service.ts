@@ -62,11 +62,16 @@ export class InventoryService {
   tick_resource(resource: Resource) {
     resource.delta = resource.current - resource.previous;
     resource.previous = resource.current;
-    resource.price_history.push(resource.delta);
-    if (resource.price_history.length > 60) { resource.price_history.splice(0, 1); }
-    resource.rolling_average = (resource.price_history.reduce(function (accumulator, currentValue) {
-      return accumulator + currentValue;
-    }) / 60);
+    if (resource.price_history.length > this.clock.ticks_per_second) {
+      resource.price_history.splice(0,  resource.price_history.length- this.clock.ticks_per_second   );
+    }
+    else {
+      resource.price_history.push(resource.delta);
+      resource.rolling_average = (resource.price_history.reduce(function (accumulator, currentValue) {
+        return accumulator + currentValue;
+      }) / this.clock.ticks_per_second);
+
+    }
   }
 }
 

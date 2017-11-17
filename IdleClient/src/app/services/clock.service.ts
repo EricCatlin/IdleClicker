@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class ClockService {
+    ticks_per_second: number;
     TickList = [];
     ticker;
     clock_speed = 1000;
@@ -24,6 +25,7 @@ export class ClockService {
         if (!this.ticker) {
             this.ticker = Observable.interval(delay || this.clock_speed).subscribe(x => this.Tick());
         }
+        this.ticks_per_second = Math.floor(1000/delay);
     }
 
     StopTicker() {
