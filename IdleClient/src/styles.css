@@ -28,6 +28,13 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
   }
 
+  .bordered{
+    border: 1px solid;
+  }
+  .rounded{
+    border-radius: 5px;
+  }
+
 
   .color-red-50 { color: #ffebee; }
   .bg-red-50 { background-color: #ffebee; }
