@@ -1,0 +1,14 @@
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Save
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class='pull-left'>
+        <button mat-raised-button [class.bg-green-800]="clock_running" (click)="Save()">Save</button>
+    </div>
+    <div class='pull-right'>
+        <button mat-raised-button (click)="Load()">Load</button>
+
+    </div>
+</mat-expansion-panel>

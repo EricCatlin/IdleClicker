@@ -22,6 +22,7 @@ import { TimeComponent } from './components/time/time.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { MarketComponent } from './components/market/market.component';
+import { SaveComponent } from './components/save/save.component';
 
 import { UpgradeComponent } from './components/upgrades/upgrades.component';
 
@@ -59,7 +60,8 @@ import {MatChipsModule} from '@angular/material/chips';
     InventoryComponent,
     ChartComponent,
     WorkerComponent,
-    UpgradeComponent
+    UpgradeComponent,
+    SaveComponent
   ],
   imports: [
     BrowserModule,

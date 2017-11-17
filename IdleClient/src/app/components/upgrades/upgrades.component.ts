@@ -22,7 +22,6 @@ export class UpgradeComponent implements IUpgrades {
     if (this.inventory.Purchase(upgrade.cost_key, upgrade.cost)) {
       this.upgrades.owned_upgrades[upgrade.id] = true;
       this.owned_upgrade_array.push(upgrade);
-      this.upgrade_list.splice(this.upgrade_list.indexOf(upgrade), 1);
       if (this.callback) { this.callback.UpgradeCallback(upgrade); }
 
     }
