@@ -19,7 +19,7 @@ export class UpgradeComponent implements IUpgrades {
   offered_upgrades: Upgrade[];
 
   AddUpgrade(upgrade: Upgrade) {
-    if (this.inventory.Purchase(upgrade.cost_key, upgrade.cost)) {
+    if (this.inventory.Spend(upgrade.cost_key, upgrade.cost)) {
       this.upgrades.owned_upgrades[upgrade.id] = true;
       this.owned_upgrade_array.push(upgrade);
       if (this.callback) { this.callback.UpgradeCallback(upgrade); }

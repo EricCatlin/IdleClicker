@@ -18,8 +18,9 @@ export class ResourceComponent {
     this.upgrade_list = Upgrades;
   }
 
-  Increment(y) { this.inventory.IncrementResource('lightbulbs', this.ClickerUpgradePowers((y))); this.AnalyzeClick(); }
-
+  MakeLightbulb() { if(this.inventory.Spend('scrap',1) ) { this.inventory.IncrementResource('lightbulbs', this.ClickerUpgradePowers(1)); this.AnalyzeClick(); }}
+  BuyScrap() { if(this.inventory.Spend('currency',1) ) { this.inventory.IncrementResource('scrap', this.ClickerUpgradePowers(100)); }}
+  
   AnalyzeClick() {
     if ( !this.upgrades.owned_upgrades['10LIGHTBULBS'] && this.inventory.resources['lightbulbs'].total > 10) {
       this.upgrades.owned_upgrades['10LIGHTBULBS'] = true;

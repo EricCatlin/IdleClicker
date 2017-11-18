@@ -23,7 +23,7 @@ export class MarketComponent implements OnInit {
     this.specials.push(new Special('currency', 'lightbulbs', 100, 100, 10));
   }
   AcceptSpecial(offer: Offer) {
-    if (this.inventory.Purchase(offer.buying, offer.amount)) {
+    if (this.inventory.Spend(offer.buying, offer.amount)) {
       this.inventory.IncrementResource(offer.selling, offer.cost);
       this.specials.splice(this.specials.indexOf(offer), 1);
     } else {
@@ -49,7 +49,7 @@ export class MarketComponent implements OnInit {
     }
   }
   Accept(offer: Offer) {
-    if (this.inventory.Purchase(offer.buying, offer.amount)) {
+    if (this.inventory.Spend(offer.buying, offer.amount)) {
       this.inventory.IncrementResource(offer.selling, offer.cost);
       offer.cooldown = offer._cooldown;
     } else {

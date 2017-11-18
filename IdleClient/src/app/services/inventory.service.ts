@@ -2,10 +2,10 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { ClockService } from './clock.service';
-import { IPurchasable } from './upgrades.service';
 @Injectable()
 export class InventoryService {
   resources: {};
+  resource_keys: string[];
 
   SpendResource(name: string, amount: number) {
     const resource = this.resources[name];
@@ -20,8 +20,8 @@ export class InventoryService {
     resource.total += amount;
   }
 
-  Purchase(name: string, amount: number): boolean {
-    amount = Math.floor(amount);
+  Spend(name: string, amount: number): boolean {
+    
 
     const resource = this.resources[name];
     if (!resource) { console.error('Resource not found'); return; }
@@ -32,6 +32,7 @@ export class InventoryService {
       return false;
     }
   }
+
 
   purchaseCostMet(purchasable: IPurchasable): boolean {
     if (purchasable.cost && purchasable.cost_key) {
@@ -51,11 +52,11 @@ export class InventoryService {
     this.resources = {};
     this.resources['currency'] = new Resource('currency', 400);
     this.resources['lightbulbs'] = new Resource('lightbulbs', 400);
-    this.resources['glass'] = new Resource('glass', 400);
-    this.resources['wire'] = new Resource('wire', 400);
+    this.resources['scrap'] = new Resource('scrap', 10);
     this.resources['worker'] = new Resource('worker', 0);
     this.resources['manager'] = new Resource('manager', 0);
 
+    this.resource_keys = Object.keys(this.resources);
 
     clock.Tick_CheckIn(this);
   }
@@ -102,3 +103,7 @@ export class Resource implements IResource {
   }
 }
 
+export interface IPurchasable {
+  cost: number;
+  cost_key: string;
+}

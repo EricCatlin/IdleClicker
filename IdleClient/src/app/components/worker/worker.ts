@@ -20,8 +20,10 @@ export class WorkerComponent implements OnInit {
   auto_workers_cost: number;
 
   tick() {
-    const auto = Math.floor((this.workers.current * this.auto_workers_power) + ((this.managers.current / 10) * this.workers.current));
-    this.inventory.IncrementResource('lightbulbs', auto);
+    let auto = Math.floor((this.workers.current * this.auto_workers_power) + ((this.managers.current / 10) * this.workers.current));
+    if (auto > this.inventory.resources['scrap'].current) { auto = this.inventory.resources['scrap']; }
+    if (this.inventory.Spend('scrap', auto)) { this.inventory.IncrementResource('lightbulbs', auto); }
+
   }
   constructor(private clock: ClockService, private inventory: InventoryService) {
     this.auto_workers_power = 1;
@@ -37,7 +39,7 @@ export class WorkerComponent implements OnInit {
   }
 
   IncrementWorker() {
-    if (this.inventory.Purchase('currency', this.auto_workers_cost)) {
+    if (this.inventory.Spend('currency', this.auto_workers_cost)) {
       this.inventory.IncrementResource('worker', 1);
       this.auto_workers_cost = Math.floor(this.auto_workers_cost * 1.1);
       return;
@@ -45,7 +47,7 @@ export class WorkerComponent implements OnInit {
   }
 
   IncrementManager() {
-    if (this.inventory.Purchase('currency', this.manager_cost)) {
+    if (this.inventory.Spend('currency', this.manager_cost)) {
       this.inventory.IncrementResource('manager', 1);
       this.manager_cost = Math.floor(this.manager_cost * 1.1);
       return;

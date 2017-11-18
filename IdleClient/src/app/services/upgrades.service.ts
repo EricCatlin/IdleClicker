@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IPurchasable } from './inventory.service';
 
 @Injectable()
 export class UpgradesService {
@@ -50,8 +51,5 @@ export interface IUpgrades {
   AddUpgrade(offer: Upgrade);
 }
 
-export interface IPurchasable {
-  cost: number;
-  cost_key: string;
-}
+
 
