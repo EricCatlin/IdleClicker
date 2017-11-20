@@ -7,7 +7,7 @@
     </mat-expansion-panel-header>
 
 
-
+    <mat-accordion>
 
     <mat-expansion-panel class='col-xs-6'>
         <mat-expansion-panel-header>
@@ -53,8 +53,8 @@
 
     </mat-expansion-panel>
 
+</mat-accordion>
 
 
-
-    <upgrade-panel [upgrade_list]="upgrade_list" [callback]="this" class='col-xs-12'></upgrade-panel>
+    <upgrade-panel class='col-xs-3' [upgrade_list]="upgrade_list" [callback]="this"></upgrade-panel>
 </mat-expansion-panel>

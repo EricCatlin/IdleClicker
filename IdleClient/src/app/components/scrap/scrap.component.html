@@ -1,0 +1,5 @@
+<mat-card class='col-xs-12'>
+  <div class='col-xs-4'>Cost: {{scrap_cost}}</div><button class='btn btn-primary col-xs-4' [disabled]="!inventory.purchaseCostMet({'cost':scrap_cost,'cost_key':'currency'})"
+    (click)="BuyScrap(1000)">Buy Scrap
+  </button>
+</mat-card>

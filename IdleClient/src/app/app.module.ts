@@ -25,6 +25,9 @@ import { MarketComponent } from './components/market/market.component';
 import { SaveComponent } from './components/save/save.component';
 
 import { UpgradeComponent } from './components/upgrades/upgrades.component';
+import { BusinessComponent } from './components/business/business.component';
+import { MakeComponent } from './components/make/make.component';
+import { ScrapComponent } from './components/scrap/scrap.component';
 
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -35,16 +38,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { ToolbarModule } from 'primeng/primeng';
 import { ChartModule } from 'primeng/primeng';
 import { PanelModule } from 'primeng/primeng';
-import {ProgressBarModule} from 'primeng/primeng';
+import { ProgressBarModule } from 'primeng/primeng';
 
 
 
 
 // Angular Material stuff
-import {MatButtonModule, MatCheckboxModule, MatButton} from '@angular/material';
-import {MatCardModule} from '@angular/material/card';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatButtonModule, MatCheckboxModule, MatButton } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 
@@ -61,7 +64,10 @@ import {MatChipsModule} from '@angular/material/chips';
     ChartComponent,
     WorkerComponent,
     UpgradeComponent,
-    SaveComponent
+    SaveComponent,
+    BusinessComponent,
+    MakeComponent,
+    ScrapComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +83,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCheckboxModule,
     MatCardModule,
     MatExpansionModule,
-    MatChipsModule  ],
+    MatChipsModule],
   providers: [ClockService, InventoryService, UpgradesService],
   bootstrap: [AppComponent]
 })

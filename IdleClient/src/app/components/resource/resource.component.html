@@ -4,23 +4,16 @@
       Resources
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <div>
-    <div class='col-xs-12 col-md-3'>
-      <button class='btn btn-primary btn-block' [disabled]="!inventory.purchaseCostMet({'cost':1,'cost_key':'scrap'})" (click)="MakeLightbulb()">+1 Make Lightbulb
-      </button>
-      <br/>
-      <button class='btn btn-primary btn-block' [disabled]="!inventory.purchaseCostMet({'cost':1,'cost_key':'currency'})" (click)="BuyScrap(1)">+100 Buy Scrap
-      </button>
-    </div>
-
-    <div class='col-xs-12'>
-        <mat-checkbox *ngFor="let resource of inventory.resource_keys" [(ngModel)]="inventory.resources[resource].chart_active">{{resource}}</mat-checkbox>
-    </div>
-    <div  *ngFor="let resource of inventory.resource_keys">
-      <inventory-panel *ngIf="inventory.resources[resource].chart_active"   class='col-xs-12 col-md-6' [resource]="inventory.resources[resource]"></inventory-panel>
-     
-    </div>
-    <worker-panel></worker-panel>
-    <upgrade-panel [upgrade_list]="upgrade_list"></upgrade-panel>
+  <div class='col-xs-12 col-lg-6'>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Inventory
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <inventory-panel *ngFor="let resource of inventory.resource_keys" [resource]="inventory.resources[resource]"></inventory-panel>
+    </mat-expansion-panel>
   </div>
+  <worker-panel *ngIf="upgrades.owned_upgrades['LIGHTBULBWORKERS']" class='col-xs-12 col-lg-6'></worker-panel>
+  <upgrade-panel class='col-xs-12 col-lg-6' [upgrade_list]="upgrade_list"></upgrade-panel>
 </mat-expansion-panel>

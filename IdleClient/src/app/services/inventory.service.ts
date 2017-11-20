@@ -21,8 +21,6 @@ export class InventoryService {
   }
 
   Spend(name: string, amount: number): boolean {
-    
-
     const resource = this.resources[name];
     if (!resource) { console.error('Resource not found'); return; }
     if (resource.current >= amount) {
@@ -50,9 +48,9 @@ export class InventoryService {
 
   constructor(private clock: ClockService) {
     this.resources = {};
-    this.resources['currency'] = new Resource('currency', 400);
-    this.resources['lightbulbs'] = new Resource('lightbulbs', 400);
-    this.resources['scrap'] = new Resource('scrap', 10);
+    this.resources['currency'] = new Resource('currency', 5);
+    this.resources['lightbulbs'] = new Resource('lightbulbs', 0);
+    this.resources['scrap'] = new Resource('scrap', 1000);
     this.resources['worker'] = new Resource('worker', 0);
     this.resources['manager'] = new Resource('manager', 0);
 

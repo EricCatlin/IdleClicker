@@ -5,14 +5,11 @@
         </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <div class='col-xs-6'>
-        <button mat-raised-button type="button" [disabled]="auto_workers_cost > currency.current" (click)="IncrementWorker(1)">Buy Worker ({{auto_workers_cost}})
+    
+        <button class='btn btn-primary btn-block' [disabled]="auto_workers_cost > currency.current" (click)="IncrementWorker(1)">Buy Worker ({{auto_workers_cost}})
+            {{workers.current}}
         </button>
-        {{workers.current}}
-    </div>
-    <div class='col-xs-6'>
-        <button mat-raised-button type="button" [disabled]="manager_cost > currency.current" (click)="IncrementManager(1)">Buy Manager ({{manager_cost}})
+        <button class='btn btn-primary btn-block' [disabled]="manager_cost > currency.current" (click)="IncrementManager(1)">Buy Manager ({{manager_cost}})
+            {{managers.current}}
         </button>
-        {{managers.current}}
-    </div>
 </mat-expansion-panel>

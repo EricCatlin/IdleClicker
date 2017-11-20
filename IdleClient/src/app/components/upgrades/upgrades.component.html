@@ -6,37 +6,38 @@
     </mat-expansion-panel-header>
 
 
+    <mat-accordion>
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Available
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div *ngFor="let item of upgrade_list " style='zoom:.8'>
+                <mat-card *ngIf="!upgrades.owned_upgrades[item.id] && upgrades.purchaseDependenciesMet(item)" class="col-xs-12 bordered rounded border-black">
+
+                    <div>{{item.name}}</div>
+                    <button class='btn btn-primary btn-block' [disabled]="!inventory.purchaseCostMet(item)" (click)="AddUpgrade(item)">{{item.cost_key}}: {{item.cost}}</button>
+                </mat-card>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Purchased
+                </mat-panel-title>
+            </mat-expansion-panel-header>
 
 
-    <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Available
-            </mat-panel-title>
-        </mat-expansion-panel-header>
+            <div *ngFor="let item of upgrade_list "  style='zoom:.8'>
+                <mat-card *ngIf="upgrades.owned_upgrades[item.id]" class="col-xs-12 bordered rounded border-black">
 
-        <div *ngFor="let item of upgrade_list ">
-            <mat-card *ngIf="!upgrades.owned_upgrades[item.id] && upgrades.purchaseDependenciesMet(item)" class="col-xs-6 bordered rounded border-black">
+                    <div>{{item.name}}</div>
+                </mat-card>
+            </div>
 
-                <div>{{item.name}}</div>
-                <button class='btn btn-primary btn-block' [disabled]="!inventory.purchaseCostMet(item)" (click)="AddUpgrade(item)">{{item.cost_key}}: {{item.cost}}</button>
-            </mat-card>
-        </div>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Purchased
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-
-
-        <div *ngFor="let item of upgrade_list ">
-            <mat-card *ngIf="upgrades.owned_upgrades[item.id]" class="col-xs-6 bordered rounded border-black">
-                <div>{{item.name}}</div>
-            </mat-card>
-        </div>
-
-    </mat-expansion-panel>
+        </mat-expansion-panel>
+    </mat-accordion>
 </mat-expansion-panel>

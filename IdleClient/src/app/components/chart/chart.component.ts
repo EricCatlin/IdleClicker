@@ -11,7 +11,7 @@ export class ChartComponent {
     @Input() resource: Resource;
     @ViewChild('chart') chart: UIChart;
     options = {
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: false,
         animation: {
             duration: 100
@@ -33,7 +33,8 @@ export class ChartComponent {
         },
         elements: {
             point: {
-                radius: 1
+                radius: 1,
+                backgroundColor : 'white'
             }
         },
         legend: { display: false }
