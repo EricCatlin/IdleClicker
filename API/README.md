@@ -1,57 +1,33 @@
-Express & ES6 REST API Boilerplate
-==================================
+# Installation
 
-[![bitHound Score](https://www.bithound.io/github/developit/express-es6-rest-api/badges/score.svg)](https://www.bithound.io/github/developit/express-es6-rest-api)
+```npm install```
 
-This is a straightforward boilerplate for building REST APIs with ES6 and Express.
+```npm run dev```
 
-- ES6 support via [babel](https://babeljs.io)
-- REST resources as middleware via [resource-router-middleware](https://github.com/developit/resource-router-middleware)
-- CORS support via [cors](https://github.com/troygoode/node-cors)
-- Body Parsing via [body-parser](https://github.com/expressjs/body-parser)
 
-> Tip: If you are using [Mongoose](https://github.com/Automattic/mongoose), you can automatically expose your Models as REST resources using [restful-mongoose](https://git.io/restful-mongoose).
+Accompanying the standard npm neo4j driver is a custom JS Graph Manipulation library in `/API/src/lib/graph.js`
 
-Getting Started
----------------
+This js library standardizes a method of interacting with graph data allowing for Addition, Subtraction, and the computation of differences between any 2 subgraphs.
 
-```sh
-# clone it
-git clone git@github.com:developit/express-es6-rest-api.git
-cd express-es6-rest-api
-
-# Make it your own
-rm -rf .git && git init && npm init
-
-# Install dependencies
-npm install
-
-# Start development live-reload server
-PORT=8080 npm run dev
-
-# Start production server:
-PORT=8080 npm start
+**Subgraph** - Standard collection of Nodes and Rels
+```json
+{"nodes":{"uuid":"NodeObject"}, "rels":{"uuid":"RelObject"}}
 ```
-Docker Support
-------
-```sh
-cd express-es6-rest-api
-
-# Build your docker
-docker build -t es6/api-service .
-#            ^      ^           ^
-#          tag  tag name      Dockerfile location
-
-# run your docker
-docker run -p 8080:8080 es6/api-service
-#                 ^            ^
-#          bind the port    container tag
-#          to your host
-#          machine port   
-
+**Node** - Standard Node Object
+```json
+{"labels":[], "properties":{"uuid":"string", "arbitrary_props":""}}
+```
+**Rel** - Standard Relationship object
+```json
+{"type":"type_string", "properties":{"uuid":"string", "arbitrary_props":""}, "from_id" : "uuid", "to_id":"uuid"}
+```
+**Subgraph Indexes** - These additional fields add no additional information to the Subgraph but do provide convenient O(1) lookups within the subgraph
+```json
+{"nodes":{"uuid":"NodeObject"}, "rels":{"uuid":"RelObject"}, "node_label_index":{"label":["uuid_array"]}, "incoming":{"rel_type":{"to_node_uuid":["rel_uuid_array"]}}, "outgoing":{"rel_type":{"from_node_uuid":["rel_uuid_array"]}} }
+```
+**Differences** - Computed differences between any two Subgraphs. 
+```json
+{"Extra":"Subgraph", "Missing":"Subgraph", "Updated":{"nodes":{"updated":{"prop_titles":["node_uuid_array"]},"new":{"prop_titles":["node_uuid_array"]},"missing":{"prop_titles":["node_uuid_array"]}}, "rels":{"updated":{"prop_titles":["rel_uuid_array"]},"new":{"prop_titles":["rel_uuid_array"]},"missing":{"prop_titles":["rel_uuid_array"]}}}}
 ```
 
-License
--------
-
-MIT
+These JS Graph Management structures power the ANNE Stack operations, and can be performed Client-Side or Server-Side giving a standard messaging model to update state in either the DB or within a client application
