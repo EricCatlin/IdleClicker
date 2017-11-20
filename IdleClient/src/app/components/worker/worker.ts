@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ClockService } from '../../services/clock.service';
 import { InventoryService, Resource } from '../../services/inventory.service';
+import { UpgradesService } from '../../services/upgrades.service';
 
 @Component({
   selector: 'worker-panel',
@@ -25,10 +26,10 @@ export class WorkerComponent implements OnInit {
     if (this.inventory.Spend('scrap', auto)) { this.inventory.IncrementResource('lightbulbs', auto); }
 
   }
-  constructor(private clock: ClockService, private inventory: InventoryService) {
+  constructor(private clock: ClockService, private inventory: InventoryService, private upgrades: UpgradesService) {
     this.auto_workers_power = 1;
-    this.auto_workers_cost = 50;
-    this.manager_cost = 100;
+    this.auto_workers_cost = 5;
+    this.manager_cost = 50;
   }
 
   ngOnInit(): void {
@@ -41,7 +42,7 @@ export class WorkerComponent implements OnInit {
   IncrementWorker() {
     if (this.inventory.Spend('currency', this.auto_workers_cost)) {
       this.inventory.IncrementResource('worker', 1);
-      this.auto_workers_cost = Math.floor(this.auto_workers_cost * 1.1);
+      this.auto_workers_cost = Math.floor(this.auto_workers_cost * 1.1) + 1;
       return;
     }
   }

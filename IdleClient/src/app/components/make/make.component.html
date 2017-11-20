@@ -1,5 +1,6 @@
 <mat-card>
-  <button class='btn btn-primary btn-block' [disabled]="!inventory.purchaseCostMet({'cost':1,'cost_key':'scrap'})" (click)="MakeLightbulb()">+1 Make Lightbulb
+  <button class='btn btn-primary col-xs-2' [disabled]="!inventory.purchaseCostMet({'cost':1,'cost_key':'scrap'})" (click)="MakeLightbulb()">Make Lighbulb (-1 Scrap)
   </button>
+  <br/>
   <h3>Total Lights Made: {{inventory.resources['lightbulbs'].total}}</h3>
 </mat-card>

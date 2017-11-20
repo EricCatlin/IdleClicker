@@ -4,12 +4,10 @@
             Employees
         </mat-panel-title>
     </mat-expansion-panel-header>
-
-    
-        <button class='btn btn-primary btn-block' [disabled]="auto_workers_cost > currency.current" (click)="IncrementWorker(1)">Buy Worker ({{auto_workers_cost}})
+        <button class='btn btn-primary col-xs-2' [disabled]="auto_workers_cost > currency.current" (click)="IncrementWorker(1)">Buy Worker ({{auto_workers_cost}})
             {{workers.current}}
         </button>
-        <button class='btn btn-primary btn-block' [disabled]="manager_cost > currency.current" (click)="IncrementManager(1)">Buy Manager ({{manager_cost}})
+        <button class='btn btn-primary col-xs-2' *ngIf='upgrades.owned_upgrades["LIGHBULBMANAGERS"]' [disabled]="manager_cost > currency.current" (click)="IncrementManager(1)">Buy Manager ({{manager_cost}})
             {{managers.current}}
         </button>
 </mat-expansion-panel>

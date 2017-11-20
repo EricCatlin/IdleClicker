@@ -14,6 +14,5 @@
       <inventory-panel *ngFor="let resource of inventory.resource_keys" [resource]="inventory.resources[resource]"></inventory-panel>
     </mat-expansion-panel>
   </div>
-  <worker-panel *ngIf="upgrades.owned_upgrades['LIGHTBULBWORKERS']" class='col-xs-12 col-lg-6'></worker-panel>
   <upgrade-panel class='col-xs-12 col-lg-6' [upgrade_list]="upgrade_list"></upgrade-panel>
 </mat-expansion-panel>

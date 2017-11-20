@@ -11,13 +11,13 @@ import { ClockService } from '../../services/clock.service';
 export class ScrapComponent {
   scrap_cost: number;
   constructor(private clock: ClockService, private inventory: InventoryService, private upgrades: UpgradesService) {
-    this.scrap_cost = 10;
+    this.scrap_cost = 5;
   }
 
   BuyScrap(x: number) {
-    if (this.inventory.Spend('currency', this.scrap_cost * x)) {
+    if (this.inventory.Spend('currency', this.scrap_cost)) {
       this.inventory.IncrementResource('scrap', x);
-      this.scrap_cost = Math.floor(Math.random() * 50);
+      this.scrap_cost = Math.floor(Math.random() * 5) + 5;
     }
   }
 }

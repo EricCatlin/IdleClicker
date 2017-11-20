@@ -7,7 +7,8 @@
 
   <h3>Available Funds: ${{inventory.resources['currency'].current | number:'1.2'}}</h3>
   <h3>Unsold Inventory: {{inventory.resources['lightbulbs'].current | number:'1.0'}}</h3>
-
+  <h3>Raw Materials: {{inventory.resources['scrap'].current | number:'1.0'}}</h3>
+  
   <div class='col-xs-12'>
     <button class='btn btn-primary' *ngIf="cost > 0" (click)="cost = cost - 0.01">
       -
