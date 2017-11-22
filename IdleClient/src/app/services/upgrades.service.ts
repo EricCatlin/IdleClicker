@@ -45,10 +45,13 @@ export class Upgrade implements IPurchasable {
   }
 }
 
-export interface IUpgrades {
-  upgrade_list: Upgrade[];
+export interface IUpgrades extends IUpgradable {
   offered_upgrades: Upgrade[];
   AddUpgrade(offer: Upgrade);
+}
+
+export interface IUpgradable {
+  upgrade_list: Upgrade[];
 }
 
 

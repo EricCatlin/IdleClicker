@@ -1,6 +1,19 @@
-<mat-card>
-  <button class='btn btn-primary col-xs-2' [disabled]="!inventory.purchaseCostMet({'cost':1,'cost_key':'scrap'})" (click)="MakeLightbulb()">Make Lighbulb (-1 Scrap)
-  </button>
-  <br/>
-  <h3>Total Lights Made: {{inventory.resources['lightbulbs'].total}}</h3>
-</mat-card>
+<mat-sidenav-container>
+  <mat-sidenav #makesidenav mode="over" opened="false" position='end'>
+    <button class='btn btn-primary' (click)="makesidenav.toggle()">
+      <i class='fa fa-toggle-right'></i>
+    </button>
+    <upgrade-panel [upgrade_list]="upgrade_list"></upgrade-panel>
+  </mat-sidenav>
+ 
+  <mat-card>
+      <button class='btn btn-primary pull-right' (click)="makesidenav.toggle()">
+          <i class='fa fa-toggle-left'></i>
+        </button>
+    <button class='btn btn-primary col-xs-6 col-lg-2' [disabled]="!inventory.purchaseCostMet({'cost':1,'cost_key':'scrap'})"
+      (click)="MakeLightbulb()">Make Lighbulb (-1 Scrap)
+    </button>
+    <br/>
+    <h3>Total Lights Made: {{inventory.resources['lightbulbs'].total}}</h3>
+  </mat-card>
+</mat-sidenav-container>

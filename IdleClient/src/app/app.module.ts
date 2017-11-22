@@ -48,7 +48,7 @@ import { MatButtonModule, MatCheckboxModule, MatButton } from '@angular/material
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 
@@ -83,7 +83,9 @@ import { MatChipsModule } from '@angular/material/chips';
     MatCheckboxModule,
     MatCardModule,
     MatExpansionModule,
-    MatChipsModule],
+    MatChipsModule,
+    MatSidenavModule
+  ],
   providers: [ClockService, InventoryService, UpgradesService],
   bootstrap: [AppComponent]
 })

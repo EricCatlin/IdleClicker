@@ -2,14 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { InventoryService, Resource } from '../../services/inventory.service';
 import { ClockService } from '../../services/clock.service';
 import { CurrencyPipe } from '@angular/common';
-import { UpgradesService, Upgrade } from '../../services/upgrades.service';
+import { UpgradesService, Upgrade, IUpgradable } from '../../services/upgrades.service';
 import { Upgrades } from './upgrades';
 
 @Component({
   selector: 'market-panel',
   templateUrl: `./market.component.html`
 })
-export class MarketComponent implements OnInit {
+export class MarketComponent implements OnInit, IUpgradable {
   upgrade_list: Upgrade[];
   constructor(private inventory: InventoryService, private clock: ClockService, private upgrades: UpgradesService) {
     clock.Tick_CheckIn(this);
@@ -82,7 +82,7 @@ export class MarketComponent implements OnInit {
       }
     });
 
-    if (Math.random() < (1 / ((this.specials.length + 1) * 100))) {
+    if (this.clock.Rando < (1 / ((this.specials.length + 1) * 100))) {
       const offer = new Offer('currency', 'lightbulbs', getRndInteger(10, 500), getRndInteger(100, 5000), getRndInteger(35, 400));
       this.specials.push(offer);
     }
@@ -126,7 +126,6 @@ class Offer implements IOffer {
     this.expires = expires;
     this.cooldown = cooldown;
     this._cooldown = cooldown;
-    this.id = Math.floor(Math.random() * 100000) + '';
   }
 }
 
@@ -148,6 +147,5 @@ class Special implements IOffer {
     this.amount = amount;
     this.cost_per = cost / amount;
     this.expires = expires;
-    this.id = Math.floor(Math.random() * 100000) + '';
   }
 }

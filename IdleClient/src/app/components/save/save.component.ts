@@ -11,16 +11,19 @@ import { UpgradesService } from '../../services/upgrades.service';
 export class SaveComponent {
 
   constructor(private inventory: InventoryService, private clock: ClockService, private upgrade: UpgradesService) {
-
+    this.Load();
   }
 
   Load() {
-    this.inventory.resources = JSON.parse(localStorage.getItem('InventorySave'));
-    this.upgrade.owned_upgrades = JSON.parse(localStorage.getItem('UpgradeSave'));
-    this.clock.ticks = localStorage.getItem('ClockSave');
+    if (localStorage.getItem("lightbulb_save")) {
+      this.inventory.resources = JSON.parse(localStorage.getItem('InventorySave'));
+      this.upgrade.owned_upgrades = JSON.parse(localStorage.getItem('UpgradeSave'));
+      this.clock.ticks = localStorage.getItem('ClockSave');
+    }
   }
 
   Save() {
+    localStorage.setItem("lightbulb_save", "true");
     localStorage.setItem('InventorySave', JSON.stringify(this.inventory.resources));
     localStorage.setItem('UpgradeSave', JSON.stringify(this.upgrade.owned_upgrades));
     localStorage.setItem('ClockSave', this.clock.ticks);

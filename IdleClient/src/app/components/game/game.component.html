@@ -1,12 +1,21 @@
-
-
-
-<save-panel></save-panel>
-<time-panel></time-panel>
-<make-panel></make-panel>
-<business-panel></business-panel>
-<scrap-panel></scrap-panel>
-<worker-panel></worker-panel>
-
-<resource-panel></resource-panel>
-<market-panel></market-panel>
+<mat-sidenav-container>
+    <mat-sidenav #gamesidenav mode="over" class='col-xs-9' opened="false">
+        <button class='btn btn-primary' (click)="gamesidenav.toggle()">
+            <i class='fa fa-minus'></i>
+        </button>
+        <save-panel></save-panel>
+        <time-panel></time-panel>
+    </mat-sidenav>
+    <button class='btn btn-primary' (click)="gamesidenav.toggle()">
+        <i class='fa fa-plus'></i>
+    </button>
+ 
+        <make-panel></make-panel>
+        <business-panel></business-panel>
+        <scrap-panel></scrap-panel>
+        <worker-panel></worker-panel>
+        <resource-panel></resource-panel>
+     
+        
+  
+</mat-sidenav-container>

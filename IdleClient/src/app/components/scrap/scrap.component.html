@@ -1,5 +1,17 @@
-<mat-card class='col-xs-12'>
-  <div class='col-xs-4'>Cost: {{scrap_cost}}</div><button class='btn btn-primary col-xs-4' [disabled]="!inventory.purchaseCostMet({'cost':scrap_cost,'cost_key':'currency'})"
-    (click)="BuyScrap(1000)">Buy Scrap
-  </button>
-</mat-card>
+<mat-sidenav-container>
+  <mat-sidenav #scrapsidenav mode="over" class='col-xs-9' opened="false" position='end'>
+    <button class='btn btn-primary' (click)="scrapsidenav.toggle()">
+      <i class='fa fa-toggle-right'></i>
+    </button>
+    <upgrade-panel [upgrade_list]="upgrade_list"></upgrade-panel>
+  </mat-sidenav>
+  <mat-card class='col-xs-12' style='min-height:100px;'>
+    <button class='btn btn-primary pull-right' (click)="scrapsidenav.toggle()">
+      <i class='fa fa-toggle-left'></i>
+    </button>
+    <button class='btn btn-primary col-xs-4' [disabled]="!inventory.purchaseCostMet({'cost':scrap_cost,'cost_key':'currency'})"
+      (click)="BuyScrap(1000)">Buy Scrap
+    </button>
+    <div class='col-xs-4'>Cost: {{scrap_cost | number:'1.0-2'}}</div>
+  </mat-card>
+</mat-sidenav-container>

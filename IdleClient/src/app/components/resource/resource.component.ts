@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { InventoryService, Resource } from '../../services/inventory.service';
-import { UpgradesService, Upgrade } from '../../services/upgrades.service';
+import { UpgradesService, Upgrade, IUpgradable } from '../../services/upgrades.service';
 import { Upgrades } from './upgrades';
 
 @Component({
@@ -8,7 +8,7 @@ import { Upgrades } from './upgrades';
   templateUrl: `./resource.component.html`
 })
 
-export class ResourceComponent {
+export class ResourceComponent implements IUpgradable {
   UpgradeCallback: Function;
   @Input() resource: Resource;
   show_chart = false;

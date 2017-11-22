@@ -8,6 +8,7 @@ export class ClockService {
     ticker;
     clock_speed = 1000;
     ticks;
+    Rando: number;
     Tick_CheckIn(tick): Promise<boolean> {
         console.log("Checking in ticker");
 
@@ -16,6 +17,7 @@ export class ClockService {
     }
     Tick() {
         this.ticks++;
+        this.Rando = Math.random();
         this.TickList.forEach(ticker => {
             ticker.tick();
         });

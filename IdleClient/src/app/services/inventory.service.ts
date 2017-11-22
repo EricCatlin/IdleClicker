@@ -50,10 +50,11 @@ export class InventoryService {
     this.resources = {};
     this.resources['currency'] = new Resource('currency', 5);
     this.resources['lightbulbs'] = new Resource('lightbulbs', 0);
-    this.resources['scrap'] = new Resource('scrap', 1000);
+    this.resources['scrap'] = new Resource('scrap', 5000);
     this.resources['worker'] = new Resource('worker', 0);
     this.resources['manager'] = new Resource('manager', 0);
-
+    this.resources['marketer'] = new Resource('marketer', 1);
+    
     this.resource_keys = Object.keys(this.resources);
 
     clock.Tick_CheckIn(this);

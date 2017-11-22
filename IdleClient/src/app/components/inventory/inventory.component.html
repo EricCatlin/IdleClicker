@@ -1,7 +1,7 @@
 
 
 
-<mat-card >
+<mat-card>
     {{resource.name}} {{resource.current| number:'1.0-2'}} : {{resource.rolling_average | number:'1.0-2'}}/s
 
   <mat-checkbox class='pull-right' [(ngModel)]="resource.chart_active">Plot</mat-checkbox>

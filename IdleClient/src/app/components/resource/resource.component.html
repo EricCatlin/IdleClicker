@@ -1,18 +1,8 @@
-<mat-expansion-panel [expanded]="true">
+<mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title>
-      Resources
+      Inventory
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <div class='col-xs-12 col-lg-6'>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Inventory
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <inventory-panel *ngFor="let resource of inventory.resource_keys" [resource]="inventory.resources[resource]"></inventory-panel>
-    </mat-expansion-panel>
-  </div>
-  <upgrade-panel class='col-xs-12 col-lg-6' [upgrade_list]="upgrade_list"></upgrade-panel>
+  <inventory-panel class='col-xs-6' *ngFor="let resource of inventory.resource_keys" [resource]="inventory.resources[resource]"></inventory-panel>
 </mat-expansion-panel>

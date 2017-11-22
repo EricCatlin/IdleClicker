@@ -1,13 +1,18 @@
-<mat-expansion-panel [expanded]="true">
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            Employees
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-        <button class='btn btn-primary col-xs-2' [disabled]="auto_workers_cost > currency.current" (click)="IncrementWorker(1)">Buy Worker ({{auto_workers_cost}})
-            {{workers.current}}
+<mat-sidenav-container>
+    <mat-sidenav #scrapsidenav mode="over" class='col-xs-9' opened="false" position='end'>
+        <button class='btn btn-primary' (click)="scrapsidenav.toggle()">
+            <i class='fa fa-minus'></i>
         </button>
-        <button class='btn btn-primary col-xs-2' *ngIf='upgrades.owned_upgrades["LIGHBULBMANAGERS"]' [disabled]="manager_cost > currency.current" (click)="IncrementManager(1)">Buy Manager ({{manager_cost}})
-            {{managers.current}}
+        <upgrade-panel [upgrade_list]="upgrade_list"></upgrade-panel>
+    </mat-sidenav>
+    <mat-card class='col-xs-12'>
+        <button class='btn btn-primary pull-right' (click)="scrapsidenav.toggle()">
+            <i class='fa fa-plus'></i>
         </button>
-</mat-expansion-panel>
+        <button class='btn btn-primary col-xs-6 col-lg-2' [disabled]="AutoWorkerCostCalculator() > currency.current" (click)="IncrementWorker(1)">Buy Worker ({{AutoWorkerCostCalculator() | number:'1.0-2'}}) {{workers.current}}
+        </button>
+        <button class='btn btn-primary col-xs-6 col-lg-2' *ngIf='upgrades.owned_upgrades["Managers"]' [disabled]="ManagerCostCalculator() > currency.current"
+            (click)="IncrementManager(1)">Buy Manager ({{ManagerCostCalculator()}}) {{managers.current}}
+        </button>
+    </mat-card>
+</mat-sidenav-container>
