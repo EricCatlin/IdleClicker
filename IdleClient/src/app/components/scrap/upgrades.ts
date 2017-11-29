@@ -5,6 +5,7 @@ export const Upgrades: Upgrade[] = [
     new Upgrade('Even Bigger Truck', 'The biggest truck', '', 50, 'currency',['Bigger Truck']),
     new Upgrade('Recycling', 'Recycle broken bulbs', '', 200, 'currency'),
     new Upgrade('Recycling+', 'Upgrade Recycler', '', 2000, 'currency', ['Recycling']),
+    new Upgrade('ScrapAutoBuyer', 'Buy scrap automaticly', '', 2000, 'currency'),
     
     
 ];

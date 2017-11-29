@@ -4,5 +4,5 @@
       Inventory
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <inventory-panel class='col-xs-6' *ngFor="let resource of inventory.resource_keys" [resource]="inventory.resources[resource]"></inventory-panel>
+  <inventory-panel class='col-xs-6' *ngFor="let resource of ['currency','lightbulbs','scrap']" [resource]="inventory.resources[resource]"></inventory-panel>
 </mat-expansion-panel>

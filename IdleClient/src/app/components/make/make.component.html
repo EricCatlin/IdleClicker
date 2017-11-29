@@ -7,9 +7,9 @@
   </mat-sidenav>
  
   <mat-card>
-      <button class='btn btn-primary pull-right' (click)="makesidenav.toggle()">
-          <i class='fa fa-toggle-left'></i>
-        </button>
+    <button class='btn btn-primary pull-right' (click)="makesidenav.toggle()">
+        <i class='fa fa-toggle-left'></i>
+      </button>
     <button class='btn btn-primary col-xs-6 col-lg-2' [disabled]="!inventory.purchaseCostMet({'cost':1,'cost_key':'scrap'})"
       (click)="MakeLightbulb()">Make Lighbulb (-1 Scrap)
     </button>

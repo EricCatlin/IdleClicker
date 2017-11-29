@@ -49,7 +49,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import {MatInputModule} from '@angular/material/input';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 @NgModule({
@@ -84,7 +85,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatCardModule,
     MatExpansionModule,
     MatChipsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatInputModule,
+    MatSliderModule
   ],
   providers: [ClockService, InventoryService, UpgradesService],
   bootstrap: [AppComponent]

@@ -9,8 +9,10 @@
         <button class='btn btn-primary pull-right' (click)="scrapsidenav.toggle()">
             <i class='fa fa-plus'></i>
         </button>
-        <button class='btn btn-primary col-xs-6 col-lg-2' [disabled]="AutoWorkerCostCalculator() > currency.current" (click)="IncrementWorker(1)">Buy Worker ({{AutoWorkerCostCalculator() | number:'1.0-2'}}) {{workers.current}}
-        </button>
+        <mat-card class='col-xs-12 col-lg-4'>
+            <button class='btn btn-primary btn-block' [disabled]="AutoWorkerCostCalculator() > currency.current" (click)="IncrementWorker(1)">Buy Worker ({{AutoWorkerCostCalculator() | number:'1.0-2'}}) {{workers.current}}
+            </button>
+        </mat-card>
         <button class='btn btn-primary col-xs-6 col-lg-2' *ngIf='upgrades.owned_upgrades["Managers"]' [disabled]="ManagerCostCalculator() > currency.current"
             (click)="IncrementManager(1)">Buy Manager ({{ManagerCostCalculator()}}) {{managers.current}}
         </button>
